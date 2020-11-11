@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const ms = require("ms");
+// const ms = require("ms");
 const fs = require("fs");
 
 
