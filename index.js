@@ -29,6 +29,9 @@ bot.on("ready", async () => console.log(`Logged in as ${bot.user.username}. ${bo
 bot.on("message", (message) => {
     if(!message.content.startsWith(config.prefix)) return;
 
+    if(message.content == "-done") return;
+    
+    
     const content = message.content.split(" ");
     const command = content[0].replace(config.prefix, "");
     const args = content.slice(1);

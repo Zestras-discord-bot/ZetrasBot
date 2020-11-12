@@ -371,11 +371,17 @@ module.exports = {
         paymentMethodCollector.on("collect", (message) => {
             const paymentMethodContent = message.content.toLowerCase();
             
-            if(paymentMethodContent === "bitcoin" || paymentMethodContent === "2") return ticket.send("*If you want to purchase using Bitcoin, then please buy here using our website* **http://zestras.net/**\n\n**NOTE:** Type `-close` to close the ticket at any time.") && paymentMethodCollector.stop();
+            if(paymentMethodContent === "bitcoin" || paymentMethodContent === "2") {
+                ticket.send("*If you want to purchase using Bitcoin, then please buy here using our website* **http://zestras.net/**\n\n**NOTE:** The ticket is going to get closed in 30s") 
+                paymentMethodCollector.stop() ;
+                setTimeout(() => ticket.delete(),30000); 
+                return 
+            }
+
             else if(paymentMethodContent === "paypal" || paymentMethodContent === "1") {
                 paymentMethodCollector.stop();
 
-                message.channel.send(`*You have selected PayPal as your payment method.\n\nPlease note that PayPal prices are* **15%** *higher than bitcoin prices on our shop.\n\nAlso please note that Zestras only accepts PayPal if you use Friends and Family and you pay from your PayPal balance, not a Credit/Debit card.\n\nLastly, please make sure that you accept these terms of service before you send any money: https://zestras.net/terms*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                message.channel.send(`*You have selected PayPal as your payment method.\n\nPlease note that PayPal prices are* **15%** *higher than bitcoin prices on our shop.\n\n*Also please note that Zestras only accepts PayPal if you use Friends and Family.*\n\nLastly, please make sure that you accept these terms of service before you send any money: https://zestras.net/terms*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                 message.channel.send(new discord.MessageEmbed().setTitle("Terms of Service").setDescription("*Have you read and agreed to [these](https://zestrasonline.atshop.io/terms) terms of services?*\n\n**[1]** *Yes*\n\n**[2]** *No*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
 
@@ -420,34 +426,21 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productInstagramServices[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-
-                                                    const howManyCollector = ticket.createMessageCollector(x => true);
-
-                                                    howManyCollector.on("collect", (message) => {
-                                                        const howManyContent = parseInt(message.content);
-
-                                                        if(howManyContent.toString() === "NaN") return;
-                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                        else {
-                                                            howManyCollector.stop()
-                                            
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                            const doneCollector = ticket.createMessageCollector(x => true);
-                    
-                                                            doneCollector.on("collect", (message) => {
-                                                                const doneContent = message.content.toLowerCase();
-                    
-                                                                if(doneContent === "done") {
-                                                                    doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                                }
-
-                                                            });
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **--done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    const doneCollector = ticket.createMessageCollector(x => true);
+            
+                                                    doneCollector.on("collect", (message) => {
+                                                        const doneContent = message.content.toLowerCase();
+            
+                                                        if(doneContent === "-done") {
+                                                            doneCollector.stop();
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                         }
+
                                                     });
+                                                    }
                                                 }
-                                            })
+                                            )
                                         }
                                         else if(collectorContent === "youtube" || collectorContent === "2"){
                                             
@@ -467,34 +460,21 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productYouTubeServices[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-
-                                                    const howManyCollector = ticket.createMessageCollector(x => true);
-
-                                                    howManyCollector.on("collect", (message) => {
-                                                        const howManyContent = parseInt(message.content);
-
-                                                        if(howManyContent.toString() === "NaN") return;
-                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                        else {
-                                                            howManyCollector.stop()
-                                            
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                            const doneCollector = ticket.createMessageCollector(x => true);
-                    
-                                                            doneCollector.on("collect", (message) => {
-                                                                const doneContent = message.content.toLowerCase();
-                    
-                                                                if(doneContent === "done") {
-                                                                    doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                                }
-
-                                                            });
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    const doneCollector = ticket.createMessageCollector(x => true);
+            
+                                                    doneCollector.on("collect", (message) => {
+                                                        const doneContent = message.content.toLowerCase();
+            
+                                                        if(doneContent === "-done") {
+                                                            doneCollector.stop();
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                         }
+
                                                     });
                                                 }
-                                            });
+                                            })
+                                        
                                         }
                                         else if(collectorContent === "Twitch" || collectorContent === "3"){
                                             
@@ -514,34 +494,21 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productTwitchServices[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-
-                                                    const howManyCollector = ticket.createMessageCollector(x => true);
-
-                                                    howManyCollector.on("collect", (message) => {
-                                                        const howManyContent = parseInt(message.content);
-
-                                                        if(howManyContent.toString() === "NaN") return;
-                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                        else {
-                                                            howManyCollector.stop()
-                                            
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                            const doneCollector = ticket.createMessageCollector(x => true);
-                    
-                                                            doneCollector.on("collect", (message) => {
-                                                                const doneContent = message.content.toLowerCase();
-                    
-                                                                if(doneContent === "done") {
-                                                                    doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                                }
-
-                                                            });
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    const doneCollector = ticket.createMessageCollector(x => true);
+            
+                                                    doneCollector.on("collect", (message) => {
+                                                        const doneContent = message.content.toLowerCase();
+            
+                                                        if(doneContent === "-done") {
+                                                            doneCollector.stop();
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                         }
+
                                                     });
                                                 }
-                                            });
+                                            })
+                                        
                                         }
                                         else if(collectorContent === "Spotify" || collectorContent === "4"){
                                             
@@ -561,38 +528,24 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productSpotifyServices[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-
-                                                    const howManyCollector = ticket.createMessageCollector(x => true);
-
-                                                    howManyCollector.on("collect", (message) => {
-                                                        const howManyContent = parseInt(message.content);
-
-                                                        if(howManyContent.toString() === "NaN") return;
-                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                        else {
-                                                            howManyCollector.stop()
-                                            
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                            const doneCollector = ticket.createMessageCollector(x => true);
-                    
-                                                            doneCollector.on("collect", (message) => {
-                                                                const doneContent = message.content.toLowerCase();
-                    
-                                                                if(doneContent === "done") {
-                                                                    doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                                }
-
-                                                            });
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    const doneCollector = ticket.createMessageCollector(x => true);
+            
+                                                    doneCollector.on("collect", (message) => {
+                                                        const doneContent = message.content.toLowerCase();
+            
+                                                        if(doneContent === "-done") {
+                                                            doneCollector.stop();
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                         }
+
                                                     });
                                                 }
-                                            });
+                                            })
+                                        
                                         }
                                     });
-
-                                }
+                            }
                             else if(collectorContent === "account" || collectorContent === "1") {
                                 whatLookingForCollector.stop();
                                 message.channel.send(new discord.MessageEmbed().setTitle("Which Account").setDescription("*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Limited Items*\n\n**[2]** *Call of Duty*\n\n**[3]** *Food*\n\n**[4]** *Vpn*\n\n**[5]** *Others*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
@@ -618,34 +571,21 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productLimitedItemsAccounts[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-
-                                                    const howManyCollector = ticket.createMessageCollector(x => true);
-
-                                                    howManyCollector.on("collect", (message) => {
-                                                        const howManyContent = parseInt(message.content);
-
-                                                        if(howManyContent.toString() === "NaN") return;
-                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                        else {
-                                                            howManyCollector.stop()
-                                            
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                            const doneCollector = ticket.createMessageCollector(x => true);
-                    
-                                                            doneCollector.on("collect", (message) => {
-                                                                const doneContent = message.content.toLowerCase();
-                    
-                                                                if(doneContent === "done") {
-                                                                    doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                                }
-
-                                                            });
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    const doneCollector = ticket.createMessageCollector(x => true);
+            
+                                                    doneCollector.on("collect", (message) => {
+                                                        const doneContent = message.content.toLowerCase();
+            
+                                                        if(doneContent === "-done") {
+                                                            doneCollector.stop();
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                         }
+
                                                     });
+                                                    }
                                                 }
-                                            })
+                                            )
                                         }
                                         else if(collectorContent === "call of duty" || collectorContent === "2"){
                                             
@@ -677,13 +617,13 @@ module.exports = {
                                                         else {
                                                             howManyCollector.stop()
                                             
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
                                                             const doneCollector = ticket.createMessageCollector(x => true);
                     
                                                             doneCollector.on("collect", (message) => {
                                                                 const doneContent = message.content.toLowerCase();
                     
-                                                                if(doneContent === "done") {
+                                                                if(doneContent === "-done") {
                                                                     doneCollector.stop();
                                                                     message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                                 }
@@ -724,13 +664,13 @@ module.exports = {
                                                         else {
                                                             howManyCollector.stop()
                                             
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
                                                             const doneCollector = ticket.createMessageCollector(x => true);
                     
                                                             doneCollector.on("collect", (message) => {
                                                                 const doneContent = message.content.toLowerCase();
                     
-                                                                if(doneContent === "done") {
+                                                                if(doneContent === "-done") {
                                                                     doneCollector.stop();
                                                                     message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                                 }
@@ -771,13 +711,13 @@ module.exports = {
                                                         else {
                                                             howManyCollector.stop()
                                             
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
                                                             const doneCollector = ticket.createMessageCollector(x => true);
                     
                                                             doneCollector.on("collect", (message) => {
                                                                 const doneContent = message.content.toLowerCase();
                     
-                                                                if(doneContent === "done") {
+                                                                if(doneContent === "-done") {
                                                                     doneCollector.stop();
                                                                     message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                                 }
@@ -818,13 +758,13 @@ module.exports = {
                                                         else {
                                                             howManyCollector.stop()
                                             
-                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount to **USD ($)** before sending the money.*\n*Once you have sent the money, provide screenshot proof that you have sent the money through your PayPal balance as friends and family. Once you have done that, type* **done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
                                                             const doneCollector = ticket.createMessageCollector(x => true);
                     
                                                             doneCollector.on("collect", (message) => {
                                                                 const doneContent = message.content.toLowerCase();
                     
-                                                                if(doneContent === "done") {
+                                                                if(doneContent === "-done") {
                                                                     doneCollector.stop();
                                                                     message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
                                                                 }
