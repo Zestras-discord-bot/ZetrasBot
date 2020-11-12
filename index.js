@@ -2,7 +2,6 @@ const discord = require('discord.js');
 const bot = new discord.Client({partials: ["MESSAGE", "USER", "REACTION"]});
 
 const fs = require("fs");
-const { run } = require("./commands/ticket-setup");
 const config = require("./config.json");
 
 bot.baseCommands = new discord.Collection();
@@ -36,59 +35,6 @@ bot.on("message", (message) => {
 
     if(!bot.commands.has(command)) return message.channel.send("*Command not found.*");
     else bot.commands.get(command).run(discord, bot, message, args);
-});
-
-
-// bot.on('raw', (event) => {
-//   if (event.t === 'MESSAGE_REACTION_ADD') {
-
-//     if (event.d.emoji.name == '🎫'){
-      
-//       const guild =  bot.guilds.fetch(event.d.guild_id);
-//       console.log('-----------');
-//       console.log(guild);
-
-//       const channel =  bot.channels.cache.get(event.d.channel_id);
-//       console.log('-----------');
-//       console.log(channel);
-
-//       const user = guild.members.fetch(event.d.user_id);
-//       console.log('-----------');
-//       console.log(user);
-
-      
-//     }
-//   }})
-
-bot.on('messageReactionAdd', async (reaction, user) => {
-
-  if(user.partial) await user.fetch();
-  if(reaction.partial) await reaction.fetch();
-  if(reaction.message.partial) await reaction.message.fetch();
-
-  if(user.bot) return;
-
-  // console.log(reaction,user)
-
-  if( reaction.emoji.name == '🎫') {
-      reaction.users.remove(user);
-
-      reaction.message.guild.channels.create(`ticket-${user.username}`, {
-          permissionOverwrites: [
-              {
-                  id: user.id,
-                  allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]
-              },
-              {
-                  id: reaction.message.guild.roles.everyone,
-                  deny: ["VIEW_CHANNEL"]
-              }
-          ],
-          type: 'text'
-      }).then(async channel => {
-          channel.send(`<@${user.id}>`, new discord.MessageEmbed().setTitle("Welcome to your ticket!").setDescription("We will be with you shortly").setColor("00ff00"))
-      },e => console.log(e))
-  }
 });
 
 
