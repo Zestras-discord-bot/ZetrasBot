@@ -36,7 +36,7 @@ const productLimitedItemsAccounts =[
         "price": 89.99 * ppPrice
     },
 
-]
+];
 const productCallOfDutyAccounts = [
 
     {
@@ -89,14 +89,14 @@ const productCallOfDutyAccounts = [
     },
     {
         "name": "[BULK] 2x CALL OF DUTY®: MW  | 1+ Obsidian Weapons | Email Access",
-        "price": 0.99 * ppPrice
+        "price": 1.99 * ppPrice
     },
     {
         "name": "CALL OF DUTY®: MW  | 5+ Obsidian Weapons | Email Access",
         "price": 4.49 * ppPrice
     },
 
-]
+];
 const productFoodAccounts = [
     {
         "name": "[BULK] 15x Buffalo Wild Wings 1 - 999 Points",
@@ -142,7 +142,7 @@ const productFoodAccounts = [
         "name": "Buffalo Wild Wings 10000+ Points",
         "price": 8.99 * ppPrice
     }
-]
+];
 const productVpnAccounts = [
     {
         "name": "[BULK] 7x NordVPN Accounts | EXP: 2021",
@@ -188,7 +188,7 @@ const productVpnAccounts = [
         "name": "HMA VPN Accounts",
         "price": 1.99 * ppPrice
     },
-]
+];
 const productOtherAccounts = [
     {
         "name": "Phone Verified Battle.net Warzone Accounts",
@@ -243,7 +243,7 @@ const productOtherAccounts = [
         "price": 1.49 * ppPrice
     },
 
-]
+];
 
 //LIST OF SERVICES
 
