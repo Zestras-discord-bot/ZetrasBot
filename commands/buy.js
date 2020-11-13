@@ -10,7 +10,7 @@ module.exports = {
     
     let supportRole = msg.guild.roles.cache.find(r => r.name == "Support Team");
     if (!supportRole) return msg.channel.send("There is no `Support Team` role! Please tell an admin to create this role!");
-    if (msg.channel.name != "create-ticket") return msg.channel.send(`Please use the ${msg.guild.channels.cache.find(c=> c.name == "create-ticket")} channel.`)
+    if (msg.channel.id != "776817366574432276") return msg.channel.send(`Please use the ${msg.guild.channels.cache.find(c=> c.id == "776817366574432276")} channel.`)
     let user = msg.author;
     // if (!user.bot) return msg.channel.send("Incorrect method , you will need to react to the above embed message to create a ticket");;
     if (msg.guild.channels.cache.find(c => c.topic == user.id)) return msg.channel.send(new discord.MessageEmbed()
@@ -33,7 +33,7 @@ module.exports = {
             id:supportRole.id,
             allow:['VIEW_CHANNEL']
           }]})
-      .then(c => c.setParent(msg.guild.channels.cache.find(channel => channel.type == "category" && channel.name == "Support").id),e => console.log(e))
+      .then(c => c.setParent(msg.guild.channels.cache.find(channel => channel.id == 776818807192682527).id),e => console.log(e)) //channel.type == "category" &&
       .then(c => {c.overwritePermissions([
         {
           id: msg.guild.roles.cache.find(r => r.name == "@everyone").id,
@@ -55,18 +55,10 @@ module.exports = {
             .setDescription(`You can find it here: ${c}.`)
             .setTimestamp()
             .setFooter(`© 2020 ${bot.user.username}`, bot.user.displayAvatarURL)
-            .setColor(0x00FF00))
+            .setColor(0x00FF00)).then(
+              (message)=> setTimeout(()=> message.delete(),20000)
+            )
 
-          // let embed = new discord.MessageEmbed()
-          //   .setColor("#36393E")
-          //   .setTitle("Ticket created!")
-          //   .setDescription('If you are looking for suppport please leave us everything we would need to help you, like the ID order , the issue with the account and your payment methos , in case you Paid with PP leave us your PP email as well.')
-          //   .addField('In case you are looking to buy With PP , type ```-buy``` to start the process.','So tell use , how can we help you ??')
-          //   // .addField(`${msg.author.username}'s ticket`, `Hello <@${msg.author.id}>, how can I help you today? To make this easier for our staff, please answer the questions below and wait for our support team to get back to you.\n\n1. Describe your issue\n2. When did you purchase\n3. Product you’ve purchased\n4. Order ID\n5. Screenshot of email you received\n6. Amount purchased and non-working creditals\n\nNOTE: If the account you bought was invalid then please send the required proof for a replacement. You can read the required proof here: <#${msg.guild.channels.cache.find(channel => channel.name === "replacements").id}>.\n\n Whenever done with the ticket, type \`-close\` `)
-          //   .setTimestamp()
-          //   .setFooter(`© 2020 ${bot.user.username}`, bot.user.displayAvatarURL);
-            
-          // c.send(embed);
           c.send('-buy-bot')
           c.send(`${msg.author} ${supportRole}`).then(m => m.delete()).catch(err => console.log(err));
         }, e => console.log(e))
