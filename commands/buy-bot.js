@@ -1,7 +1,7 @@
 
 // PP EMAIL
 
-const ppEmail =  'zestralobbies@yahoo.com'
+const ppEmail =  'zestras1337@gmail.com'
 
 
 //PRICE FOR PP
@@ -365,14 +365,14 @@ module.exports = {
 
         let ticket = message.channel ;
 
-        message.reply(new discord.MessageEmbed().setTitle(`Lets Get Started!`).setDescription("*What payment method would you like to use to pay?*\n\n**[1]** *PayPal*\n\n**[2]** *Bitcoin*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
+        message.reply(new discord.MessageEmbed().setTitle(`Let's Get Started!`).setDescription("*What payment method would you like to use to pay?*\n\n**[1]** *PayPal*\n\n**[2]** *Bitcoin*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
         const paymentMethodCollector = ticket.createMessageCollector(x => true);
 
         paymentMethodCollector.on("collect", (message) => {
             const paymentMethodContent = message.content.toLowerCase();
             
             if(paymentMethodContent === "bitcoin" || paymentMethodContent === "2") {
-                ticket.send("*If you want to purchase using Bitcoin, then please buy here using our website* **http://zestras.net/**\n\n**NOTE:** The ticket is going to get closed in 30s") 
+                ticket.send("*If you want to purchase using Bitcoin, then please buy using our website* **http://zestras.net/**\n\n**NOTE:** The ticket is going to get closed in 30s. **(create a new ticket if you want to purchase using PayPal)**") 
                 paymentMethodCollector.stop() ;
                 setTimeout(() => ticket.delete(),30000); 
                 return 
@@ -381,7 +381,7 @@ module.exports = {
             else if(paymentMethodContent === "paypal" || paymentMethodContent === "1") {
                 paymentMethodCollector.stop();
 
-                message.channel.send(`*You have selected PayPal as your payment method.\n\nPlease note that PayPal prices are* **15%** *higher than bitcoin prices on our shop.\n\n*Also please note that Zestras only accepts PayPal if you use Friends and Family.*\n\nLastly, please make sure that you accept these terms of service before you send any money: https://zestras.net/terms*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                message.channel.send(`*You have selected PayPal as your payment method.\n\nPlease note that PayPal prices are* **15%** *higher than bitcoin prices on our shop.*\n\n*Also please note that Zestras only accepts PayPal if you use Friends and Family.*\n\n*Lastly, please make sure that you accept these terms of service before you send any money: https://zestras.net/terms*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                 message.channel.send(new discord.MessageEmbed().setTitle("Terms of Service").setDescription("*Have you read and agreed to [these](https://zestrasonline.atshop.io/terms) terms of services?*\n\n**[1]** *Yes*\n\n**[2]** *No*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
 
@@ -390,7 +390,19 @@ module.exports = {
                 acceptedTermsCollector.on("collect", (message) => {
                     const acceptedTermsContent = message.content.toLowerCase();
 
-                    if(acceptedTermsContent === "no" || acceptedTermsContent === "2") return ticket.delete() && acceptedTermsCollector.stop();
+                    if(acceptedTermsContent === "no" || acceptedTermsContent === "2") {
+                        acceptedTermsCollector.stop()
+                        message.channel.send('*You need to accept the terms of services in order to purchase.*')
+                        message.channel.send(new discord.MessageEmbed().setTitle("Terms of Service").setDescription("*Have you read and agreed to [these](https://zestrasonline.atshop.io/terms) terms of services?*\n\n**[1]** *Yes*\n\n**[2]** *No*\n\n**NOTE:** Type `-close` to close the ticket at any time.").setColor(0x36393E));
+                        const acceptedTermsSecondTimeCollector = ticket.createMessageCollector(x => true);
+                        acceptedTermsSecondTimeCollector.on("collect", (message) => {
+                            const acceptedTermsContentAgain = message.content.toLowerCase(); 
+                            if(acceptedTermsContentAgain === "no" || acceptedTermsContentAgain === "2" && !message.author.bot) {return ticket.delete() && acceptedTermsSecondTimeCollector.stop()}
+                            else if (!message.author.bot && acceptedTermsContentAgain === "yes" || acceptedTermsContentAgain === "1") {
+                                acceptedTermsSecondTimeCollector.stop()
+                                message.channel.send(`OK!! let's start over`).then(message.channel.send('-buy-bot'));
+                            }
+                    })} 
                     else if(acceptedTermsContent === "yes" || acceptedTermsContent === "1") {
                         acceptedTermsCollector.stop();
 
@@ -434,7 +446,7 @@ module.exports = {
             
                                                         if(doneContent === "-done") {
                                                             doneCollector.stop();
-                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                         }
 
                                                     });
@@ -468,7 +480,7 @@ module.exports = {
             
                                                         if(doneContent === "-done") {
                                                             doneCollector.stop();
-                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                         }
 
                                                     });
@@ -502,7 +514,7 @@ module.exports = {
             
                                                         if(doneContent === "-done") {
                                                             doneCollector.stop();
-                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                         }
 
                                                     });
@@ -536,7 +548,7 @@ module.exports = {
             
                                                         if(doneContent === "-done") {
                                                             doneCollector.stop();
-                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                         }
 
                                                     });
@@ -569,43 +581,9 @@ module.exports = {
                                                 else if(number < 1 || number > productLimitedItemsAccounts.length) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
                                                 else {
                                                     productCollector.stop();
-                                                    const product = productLimitedItemsAccounts[number - 1];
-
-                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
-                                                    const doneCollector = ticket.createMessageCollector(x => true);
-            
-                                                    doneCollector.on("collect", (message) => {
-                                                        const doneContent = message.content.toLowerCase();
-            
-                                                        if(doneContent === "-done") {
-                                                            doneCollector.stop();
-                                                            message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
-                                                        }
-
-                                                    });
-                                                    }
-                                                }
-                                            )
-                                        }
-                                        else if(collectorContent === "call of duty" || collectorContent === "2"){
-                                            
-                                            whichServiceCollector.stop()
-                                            
-                                            message.channel.send(`*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productCallOfDutyAccounts.map(product =>`**[${productCallOfDutyAccounts.indexOf(product) + 1}]** *${product.name}* (**$${product.price.toFixed(2)}**)`).join("\n")}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                            
-                                            const productCollector = ticket.createMessageCollector(x => true);
-
-                                            productCollector.on("collect", (message) => {
-                                                const productContent = message.content.toLowerCase();
-                                                const number = parseInt(productContent);
-                    
-                                                if(number.toString() === "NaN") return;
-                                                else if(number < 1 || number > productCallOfDutyAccounts.length) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
-                                                else {
-                                                    productCollector.stop();
                                                     const product = productCallOfDutyAccounts[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                                                     const howManyCollector = ticket.createMessageCollector(x => true);
 
@@ -625,7 +603,54 @@ module.exports = {
                     
                                                                 if(doneContent === "-done") {
                                                                     doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
+                                                                }
+
+                                                            });
+                                                        }
+                                                    });
+                                                }
+                                            })
+                                        }
+                                        else if(collectorContent === "call of duty" || collectorContent === "2"){
+                                            
+                                            whichServiceCollector.stop()
+                                            
+                                            message.channel.send(`*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productCallOfDutyAccounts.map(product =>`**[${productCallOfDutyAccounts.indexOf(product) + 1}]** *${product.name}* (**$${product.price.toFixed(2)}**)`).join("\n")}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
+                                            
+                                            const productCollector = ticket.createMessageCollector(x => true);
+
+                                            productCollector.on("collect", (message) => {
+                                                const productContent = message.content.toLowerCase();
+                                                const number = parseInt(productContent);
+                    
+                                                if(number.toString() === "NaN") return;
+                                                else if(number < 1 || number > productCallOfDutyAccounts.length) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
+                                                else {
+                                                    productCollector.stop();
+                                                    const product = productCallOfDutyAccounts[number - 1];
+
+                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+
+                                                    const howManyCollector = ticket.createMessageCollector(x => true);
+
+                                                    howManyCollector.on("collect", (message) => {
+                                                        const howManyContent = parseInt(message.content);
+
+                                                        if(howManyContent.toString() === "NaN") return;
+                                                        else if(howManyContent < 1 || howManyContent > 999) return message.channel.send(`*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`)
+                                                        else {
+                                                            howManyCollector.stop()
+                                            
+                                                            message.channel.send(`*Send*  **$${(product.price.toFixed(2)*howManyContent).toFixed(2)}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                            const doneCollector = ticket.createMessageCollector(x => true);
+                    
+                                                            doneCollector.on("collect", (message) => {
+                                                                const doneContent = message.content.toLowerCase();
+                    
+                                                                if(doneContent === "-done") {
+                                                                    doneCollector.stop();
+                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                                 }
 
                                                             });
@@ -652,7 +677,7 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productFoodAccounts[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                                                     const howManyCollector = ticket.createMessageCollector(x => true);
 
@@ -672,7 +697,7 @@ module.exports = {
                     
                                                                 if(doneContent === "-done") {
                                                                     doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                                 }
 
                                                             });
@@ -699,7 +724,7 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productVpnAccounts[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                                                     const howManyCollector = ticket.createMessageCollector(x => true);
 
@@ -719,7 +744,7 @@ module.exports = {
                     
                                                                 if(doneContent === "-done") {
                                                                     doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                                 }
 
                                                             });
@@ -746,7 +771,7 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productOtherAccounts[number - 1];
 
-                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n**NOTE:** *Type any number between 1 - 999* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    message.channel.send(`*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
 
                                                     const howManyCollector = ticket.createMessageCollector(x => true);
 
@@ -766,7 +791,7 @@ module.exports = {
                     
                                                                 if(doneContent === "-done") {
                                                                     doneCollector.stop();
-                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n**NOTE:** Type `-close` to close the ticket at any time.");
+                                                                    message.channel.send("*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*");
                                                                 }
 
                                                             });
