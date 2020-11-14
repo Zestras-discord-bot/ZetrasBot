@@ -438,7 +438,7 @@ module.exports = {
                                                     productCollector.stop();
                                                     const product = productInstagramServices[number - 1];
 
-                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **--done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
+                                                    message.channel.send(`*Send*  **$${(product.price.toFixed(2))}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`);
                                                     const doneCollector = ticket.createMessageCollector(x => true);
             
                                                     doneCollector.on("collect", (message) => {
