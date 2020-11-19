@@ -48,8 +48,3 @@ app.get("/", (request, response) => {
 });
 
 app.listen(3000);
-
-
-setInterval(() => {
-  require("request").get(" https://izestras.glitch.me/");
-}, 1000 * 60);
