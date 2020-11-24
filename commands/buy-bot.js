@@ -308,15 +308,15 @@ const productInstagramServices = [
 const productYouTubeServices = [
     {
         "name": "YouTube Subscribers | 250+",
-        "price": 6.3 * ppPrice
+        "price": 2.93 * ppPrice
     },
     {
         "name": "YouTube Subscribers | 500+",
-        "price": 12.6 * ppPrice
+        "price": 5.85 * ppPrice
     },
     {
         "name": "YouTube Subscribers | 1000+",
-        "price": 25.2 * ppPrice
+        "price": 11.70 * ppPrice
     },
     {
         "name": "YouTube Likes | 500+",
