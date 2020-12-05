@@ -6,7 +6,6 @@ let numTicket;
 
 module.exports = {
   run: async (discord, bot, msg) => {
-    setTimeout(msg.delete(), 500);
     let supportRole = msg.guild.roles.cache.find(
       (r) => r.name == 'Support Team'
     );
@@ -47,6 +46,10 @@ module.exports = {
             allow: ['VIEW_CHANNEL'],
           },
         ],
+      })
+      .then((c) => {
+        msg.delete();
+        return c;
       })
       .then(
         (c) =>
