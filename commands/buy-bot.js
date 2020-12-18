@@ -44,7 +44,7 @@ const productCallOfDutyAccounts = [
   },
   {
     name: '[BULK] 150x CALL OF DUTY®: MW  | Random Stats',
-    price: 1.49 * ppPrice,
+    price: 1.5 * ppPrice,
   },
   {
     name: 'CALL OF DUTY®: MW  | Damascus Camo + Obsidian Camo | Email Access',
@@ -76,7 +76,7 @@ const productCallOfDutyAccounts = [
   },
   {
     name: '[BULK] 6x CALL OF DUTY®: MW  | 1+ Gold Weapons | Email Access',
-    price: 1.49 * ppPrice,
+    price: 1.5 * ppPrice,
   },
   {
     name: '[BULK] 4x CALL OF DUTY®: MW  | 5+ Gold Weapons | Email Access',
@@ -94,6 +94,13 @@ const productCallOfDutyAccounts = [
     name: 'CALL OF DUTY®: MW  | 5+ Obsidian Weapons | Email Access',
     price: 4.49 * ppPrice,
   },
+];
+
+const productDoorDashAccounts = [
+  {
+    name: '[BULK] 4x DoorDash Accounts w/ CC Connecteds',
+    price: 1.60 * ppPrice,
+  }
 ];
 // const productFoodAccounts = [
 //   {
@@ -289,16 +296,16 @@ const productInstagramServices = [
     price: 181.99 * ppPrice,
   },
   {
-    name: 'Instagram Likes | 2000+',
-    price: 1.68 * ppPrice,
+    name: 'Instagram Likes | 1000+',
+    price: 2.88 * ppPrice,
+  },
+  {
+    name: 'Instagram Likes | 2500+',
+    price: 7.2 * ppPrice,
   },
   {
     name: 'Instagram Likes | 5000+',
-    price: 4.2 * ppPrice,
-  },
-  {
-    name: 'Instagram Likes | 10000+',
-    price: 8.4 * ppPrice,
+    price: 14.4 * ppPrice,
   },
 ];
 
@@ -329,12 +336,12 @@ const productYouTubeServices = [
   },
 ];
 
-const productModernWarfareService = [
-  {
-    name: 'Modern Warfare Unlock All Service',
-    price: 24.99 * ppPrice,
-  },
-];
+// const productModernWarfareService = [
+//   {
+//     name: 'Modern Warfare Unlock All Service',
+//     price: 24.99 * ppPrice,
+//   },
+// ];
 
 const productOnlyFansService = [
   {
@@ -359,6 +366,33 @@ const productTwitchServices = [
   {
     name: 'Twitch Followers | 10000+',
     price: 34.99 * ppPrice,
+  },
+];
+
+const productTickTokServices = [
+  {
+    name: 'TikTok Followers | 500+ [EXTREMLY HIGH QUALITY]',
+    price: 5.49 * ppPrice,
+  },
+  {
+    name: 'TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]',
+    price: 10.99 * ppPrice,
+  },
+  {
+    name: 'TikTok Followers | 2500+ [EXTREMLY HIGH QUALITY]',
+    price: 27.49 * ppPrice,
+  },
+  {
+    name: 'TikTok Followers | 5000+ [EXTREMLY HIGH QUALITY]',
+    price: 54.99 * ppPrice,
+  },
+  {
+    name: 'TikTok Followers | 10000+ [EXTREMLY HIGH QUALITY]',
+    price: 109.99 * ppPrice,
+  },
+  {
+    name: 'TikTok Followers | 20000+ [EXTREMLY HIGH QUALITY]',
+    price: 219.99 * ppPrice,
   },
 ];
 
@@ -495,7 +529,7 @@ module.exports = {
                   new discord.MessageEmbed()
                     .setTitle('Which Service ?')
                     .setDescription(
-                      '*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Instagram*\n\n**[2]** *YouTube*\n\n**[3]** *Twitch*\n\n**[4]** *Spotify*\n\n**[5]** *Modern Warfare*\n\n**[6]** *OnlyFans Subscription*\n\n**NOTE:** Type `-close` to close the ticket at any time.'
+                      '*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Instagram*\n\n**[2]** *YouTube*\n\n**[3]** *Twitch*\n\n**[4]** *Spotify*\n\n**[5]** *TickTok*\n\n**[6]** *OnlyFans Subscription*\n\n**NOTE:** Type `-close` to close the ticket at any time.'
                     )
                     .setColor(0x36393e)
                 );
@@ -754,17 +788,17 @@ module.exports = {
                       }
                     });
                   } else if (
-                    collectorContent === 'Modern Warfare' ||
+                    collectorContent === 'TickTok' ||
                     collectorContent === '5'
                   ) {
                     whichServiceCollector.stop();
 
                     message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productModernWarfareService
+                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productTickTokServices
                         .map(
                           (product) =>
                             `**[${
-                              productModernWarfareService.indexOf(product) + 1
+                              productTickTokServices.indexOf(product) + 1
                             }]** *${product.name}* (**$${product.price.toFixed(
                               2
                             )}**)`
@@ -785,14 +819,14 @@ module.exports = {
                       if (number.toString() === 'NaN') return;
                       else if (
                         number < 1 ||
-                        number > productModernWarfareService.length
+                        number > productTickTokServices.length
                       )
                         return message.channel.send(
                           `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
                       else {
                         productCollector.stop();
-                        const product = productModernWarfareService[number - 1];
+                        const product = productTickTokServices[number - 1];
 
                         message.channel.send(
                           `*Send*  **$${product.price.toFixed(
@@ -888,7 +922,7 @@ module.exports = {
                   new discord.MessageEmbed()
                     .setTitle('Which Account')
                     .setDescription(
-                      '*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Call of Duty*\n\n**[2]** *Vpn*\n\n**[3]** *Others*\n\n**NOTE:** Type `-close` to close the ticket at any time.'
+                      '*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Call of Duty*\n\n**[2]** *Vpn*\n\n**[3]** *DoorDash*\n\n**[4]** *Others*\n\n**NOTE:** Type `-close` to close the ticket at any time.'
                     )
                     .setColor(0x36393e)
                 );
@@ -1150,9 +1184,94 @@ module.exports = {
                         });
                       }
                     });
+                  }else if (
+                    collectorContent === 'doordash' ||
+                    collectorContent === '3'
+                  ) {
+                    whichServiceCollector.stop();
+
+                    message.channel.send(
+                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productDoorDashAccounts
+                        .map(
+                          (product) =>
+                            `**[${
+                              productDoorDashAccounts.indexOf(product) + 1
+                            }]** *${product.name}* (**$${product.price.toFixed(
+                              2
+                            )}**)`
+                        )
+                        .join(
+                          '\n'
+                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                    );
+
+                    const productCollector = ticket.createMessageCollector(
+                      (x) => true
+                    );
+
+                    productCollector.on('collect', (message) => {
+                      const productContent = message.content.toLowerCase();
+                      const number = parseInt(productContent);
+
+                      if (number.toString() === 'NaN') return;
+                      else if (
+                        number < 1 ||
+                        number > productDoorDashAccounts.length
+                      )
+                        return message.channel.send(
+                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                        );
+                      else {
+                        productCollector.stop();
+                        const product = productDoorDashAccounts[number - 1];
+
+                        message.channel.send(
+                          `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                        );
+
+                        const howManyCollector = ticket.createMessageCollector(
+                          (x) => true
+                        );
+
+                        howManyCollector.on('collect', (message) => {
+                          const howManyContent = parseInt(message.content);
+
+                          if (howManyContent.toString() === 'NaN') return;
+                          else if (howManyContent < 1 || howManyContent > 999)
+                            return message.channel.send(
+                              `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                            );
+                          else {
+                            howManyCollector.stop();
+
+                            message.channel.send(
+                              `*Send*  **$${(
+                                product.price.toFixed(2) * howManyContent
+                              ).toFixed(
+                                2
+                              )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                            );
+                            const doneCollector = ticket.createMessageCollector(
+                              (x) => true
+                            );
+
+                            doneCollector.on('collect', (message) => {
+                              const doneContent = message.content.toLowerCase();
+
+                              if (doneContent === '-done') {
+                                doneCollector.stop();
+                                message.channel.send(
+                                  "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
+                                );
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
                   } else if (
                     collectorContent === 'others' ||
-                    collectorContent === '3'
+                    collectorContent === '4'
                   ) {
                     whichServiceCollector.stop();
 
