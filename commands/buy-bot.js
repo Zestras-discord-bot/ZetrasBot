@@ -413,12 +413,13 @@ module.exports = {
         ) // "This command can be only called inside of a ticket"
         .then((message) => {
           setTimeout(() => {
+            let ticket = message.channel;
             message.delete();
-            return message;
+            return ticket;
           }, 5000);
         }) //Erase when everithing works again
-        .then((message) => {
-          setTimeout(() => message.channel.delete(), 30000);
+        .then((ticket) => {
+          setTimeout(() => ticket.delete(), 30000);
         });
     }
 
