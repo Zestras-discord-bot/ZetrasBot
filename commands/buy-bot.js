@@ -411,11 +411,14 @@ module.exports = {
         .reply(
           "PP Payments are closed, Sorry but you will have to wait till we get a new PP account"
         ) // "This command can be only called inside of a ticket"
-        .then((message) => {
-          setTimeout(() => {
-            message.channel.delete();
-          }, 20000);
-        });
+        .then(
+          (message) => {
+            setTimeout(() => {
+              message.channel.delete();
+            }, 20000);
+          },
+          (e) => console.log(e)
+        );
     }
 
     let ticket = message.channel;
