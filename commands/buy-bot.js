@@ -405,11 +405,11 @@ const productCallOfDutyServices = [
 ];
 
 const activeServicesList = [
-  { list: productSpotifyServices, name: "Spotify Services" },
+  // { list: productSpotifyServices, name: "Spotify Services" },
   { list: productInstagramServices, name: "Instagram Services" },
   { list: productYouTubeServices, name: "Youtube Services" },
   { list: productOnlyFansService, name: "OnlyFans Services" },
-  { list: productTwitchServices, name: "Twitch Services" },
+  // { list: productTwitchServices, name: "Twitch Services" },
   { list: productTikTokServices, name: "TikTok  Services" },
   { list: productCallOfDutyServices, name: "Call of Duty Services" },
 ];
