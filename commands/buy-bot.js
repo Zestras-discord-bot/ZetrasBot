@@ -366,7 +366,7 @@ const productTwitchServices = [
   },
 ];
 
-const productTickTokServices = [
+const productTikTokServices = [
   {
     name: "[BULK] 2x TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
     price: 2.4 * ppPrice,
@@ -405,12 +405,12 @@ const productCallOfDutyServices = [
 ];
 
 const activeServicesList = [
-  { list: productSpotifyServices, name: "Spotify Service" },
-  { list: productInstagramServices, name: "Instagram Service" },
-  { list: productYouTubeServices, name: "Youtube Service" },
-  { list: productOnlyFansService, name: "OnlyFans Service" },
+  { list: productSpotifyServices, name: "Spotify Services" },
+  { list: productInstagramServices, name: "Instagram Services" },
+  { list: productYouTubeServices, name: "Youtube Services" },
+  { list: productOnlyFansService, name: "OnlyFans Services" },
   { list: productTwitchServices, name: "Twitch Services" },
-  { list: productTickTokServices, name: "TickTok Services" },
+  { list: productTikTokServices, name: "TikTok  Services" },
   { list: productCallOfDutyServices, name: "Call of Duty Services" },
 ];
 
@@ -430,7 +430,7 @@ module.exports = {
           (message) => {
             setTimeout(() => {
               message.delete();
-            }, 2000);
+            }, 5000);
           },
           (e) => console.log(e)
         );
