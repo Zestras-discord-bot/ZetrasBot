@@ -1,6 +1,6 @@
 // PP EMAIL
 
-const ppEmail = "zestras1337@gmail.com";
+const ppEmail = "sohaibmezlay@gmail.com";
 
 //PRICE FOR PP
 
