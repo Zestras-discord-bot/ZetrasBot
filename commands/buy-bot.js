@@ -8,51 +8,42 @@ const ppPrice = 1.15;
 
 //LIST OF ACCOUNTS
 
-// const productLimitedItemsAccounts = [
-//   {
-//     name:
-//       'CALL OF DUTY®: MW  | 11+ Obsidian Weapons w/ 26 Platinum Weapons + 31 Gold Weapons ',
-//     price: 17.99 * ppPrice,
-//   },
-//   {
-//     name: 'CALL OF DUTY®: MW  | 35+ Platinum Weapons | Email Access',
-//     price: 7.49 * ppPrice,
-//   },
-//   {
-//     name: 'CALL OF DUTY®: MW  | 40+ Platinum Weapons | Email Access',
-//     price: 8.49 * ppPrice,
-//   },
-//   {
-//     name: 'CALL OF DUTY®: MW  | 15+ Gold Weapons',
-//     price: 1.1 * ppPrice,
-//   },
-//   {
-//     name:
-//       'CALL OF DUTY®: MW  | Damascus Camo w/ 5+ Obsidian Weapons | Email Access',
-//     price: 31.99 * ppPrice,
-//   },
-//   {
-//     name:
-//       'CALL OF DUTY®: MW  | Damascus Camo + 30 Obsidian Weapons + Max Battle Pass (2-6) | Email Access',
-//     price: 89.99 * ppPrice,
-//   },
-// ];
-const productCallOfDutyAccounts = [
+const productLimitedItemsAccounts = [
   {
-    name: "CALL OF DUTY®: MW  | Damascus Camo | Email Access",
+    name: "[BULK] 4x DoorDash Accounts w/ CC Connected",
+    price: 1.6 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | Damascus Camo w/ 29+ Store Bought Items",
     price: 27.99 * ppPrice,
   },
+  {
+    name:
+      "CALL OF DUTY®: MW  | Damascus Camo w/ 10+ Obsidian Camo Weapons + 9000+ CW Kills",
+    price: 35.99 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 43+ Store Bought Items",
+    price: 8.49 * ppPrice,
+  },
+];
+
+const productCallOfDutyAccounts = [
   {
     name: "[BULK] 150x CALL OF DUTY®: MW  | Random Stats",
     price: 1.5 * ppPrice,
   },
   {
-    name: "CALL OF DUTY®: MW  | Damascus Camo + Obsidian Camo | Email Access",
-    price: 29.99 * ppPrice,
+    name: "CALL OF DUTY®: MW  | Damascus Camo | Email Access",
+    price: 22.99 * ppPrice,
   },
   {
-    name: "CALL OF DUTY®: MW  | 5+ Platinum Weapons",
-    price: 1.49 * ppPrice,
+    name: "CALL OF DUTY®: MW  | Damascus Camo + Obsidian Camo | Email Access",
+    price: 24.99 * ppPrice,
+  },
+  {
+    name: "[BULK] 3x CALL OF DUTY®: MW  | 5+ Platinum Weapons",
+    price: 2.25 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 10+ Platinum Weapons",
@@ -75,20 +66,20 @@ const productCallOfDutyAccounts = [
     price: 6.49 * ppPrice,
   },
   {
-    name: "[BULK] 6x CALL OF DUTY®: MW  | 1+ Gold Weapons | Email Access",
+    name: "[BULK] 15x CALL OF DUTY®: MW  | 1+ Gold Weapons | Email Access",
     price: 1.5 * ppPrice,
   },
   {
     name: "[BULK] 4x CALL OF DUTY®: MW  | 5+ Gold Weapons | Email Access",
-    price: 1.59 * ppPrice,
+    price: 1.6 * ppPrice,
   },
   {
     name: "[BULK] 2x CALL OF DUTY®: MW  | 10+ Gold Weapons",
-    price: 1.59 * ppPrice,
+    price: 1.6 * ppPrice,
   },
   {
     name: "[BULK] 2x CALL OF DUTY®: MW  | 1+ Obsidian Weapons | Email Access",
-    price: 1.99 * ppPrice,
+    price: 0.99 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 5+ Obsidian Weapons | Email Access",
@@ -96,16 +87,67 @@ const productCallOfDutyAccounts = [
   },
 ];
 
-const productLimitedItemsAccounts = [
+const productCallOfDutyStoreBoughtItemsAccounts = [
   {
-    name: "[BULK] 4x DoorDash Accounts w/ CC Connecteds",
-    price: 1.6 * ppPrice,
+    name: "[BULK] 3x CALL OF DUTY®: MW  | 5+ Store Bought Items",
+    price: 2.25 * ppPrice,
   },
   {
-    name: "MODERN WARFARE Accounts | Damascus Camo w/ 29+ Store Bought Items",
-    price: 33 * ppPrice,
+    name: "CALL OF DUTY®: MW  | 10+ Store Bought Items",
+    price: 2.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 15+ Store Bought Items",
+    price: 3.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 20+ Store Bought Items",
+    price: 4.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 25+ Store Bought Items",
+    price: 5.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 30+ Store Bought Items",
+    price: 6.49 * ppPrice,
   },
 ];
+
+const productCallOfDutyBlackOpsAccounts = [
+  {
+    name: "CALL OF DUTY®: BO  Cold War Accounts | 5000+ Kills",
+    price: 1.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: BO  Cold War Accounts | 10000+ Kills",
+    price: 2.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: BO  Cold War Accounts | 15000+ Kills",
+    price: 3.49 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: BO  Cold War Accounts | 20000+ Kills",
+    price: 4.49 * ppPrice,
+  },
+];
+
+const productCallOfDutyWarZoneAccounts = [
+  {
+    name: "CALL OF DUTY®: MW  | 100+ WarZone Wins",
+    price: 2.5 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 200+ WarZone Wins",
+    price: 9.99 * ppPrice,
+  },
+  {
+    name: "CALL OF DUTY®: MW  | 300+ WarZone Wins",
+    price: 14.99 * ppPrice,
+  },
+];
+
 // const productFoodAccounts = [
 //   {
 //     name: '[BULK] 15x Buffalo Wild Wings 1 - 999 Points',
@@ -219,26 +261,6 @@ const productOtherAccounts = [
     name: "Spotify Premium Upgrade (KEY + ADDY)",
     price: 1.99 * ppPrice,
   },
-  // {
-  //   name: '[BULK] 7x Gfuel Accounts | 50 - 200 Points',
-  //   price: 1.4 * ppPrice,
-  // },
-  // {
-  //   name: 'Gfuel Accounts | 200 - 400 Points',
-  //   price: 3.49 * ppPrice,
-  // },
-  // {
-  //   name: 'Gfuel Accounts | 400 - 600 Points',
-  //   price: 5.49 * ppPrice,
-  // },
-  // {
-  //   name: 'Gfuel Accounts | 600 - 800 Points',
-  //   price: 7.49 * ppPrice,
-  // },
-  // {
-  //   name: 'Gfuel Accounts | 800 - 1000 Points',
-  //   price: 8.99 * ppPrice,
-  // },
   {
     name: "[BULK] 3x PornHub Premium Accounts",
     price: 1.5 * ppPrice,
@@ -248,7 +270,11 @@ const productOtherAccounts = [
     price: 1.99 * ppPrice,
   },
   {
-    name: "PornHub Premium + Livecam Access",
+    name: "[BULK] 3x PornHub Premium",
+    price: 1.49 * ppPrice,
+  },
+  {
+    name: " PornHub Premium + Livecam Access",
     price: 1.49 * ppPrice,
   },
 ];
@@ -340,13 +366,6 @@ const productYouTubeServices = [
   },
 ];
 
-// const productModernWarfareService = [
-//   {
-//     name: 'Modern Warfare Unlock All Service',
-//     price: 24.99 * ppPrice,
-//   },
-// ];
-
 const productOnlyFansService = [
   {
     name: "OnlyFans Subscription Service (5x Subs) ",
@@ -375,28 +394,28 @@ const productTwitchServices = [
 
 const productTickTokServices = [
   {
-    name: "TikTok Followers | 500+ [EXTREMLY HIGH QUALITY]",
-    price: 5.49 * ppPrice,
-  },
-  {
-    name: "TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
-    price: 10.99 * ppPrice,
+    name: "[BULK] 2x TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
+    price: 2.4 * ppPrice,
   },
   {
     name: "TikTok Followers | 2500+ [EXTREMLY HIGH QUALITY]",
-    price: 27.49 * ppPrice,
+    price: 2.99 * ppPrice,
   },
   {
     name: "TikTok Followers | 5000+ [EXTREMLY HIGH QUALITY]",
-    price: 54.99 * ppPrice,
+    price: 5.99 * ppPrice,
   },
   {
     name: "TikTok Followers | 10000+ [EXTREMLY HIGH QUALITY]",
-    price: 109.99 * ppPrice,
+    price: 11.99 * ppPrice,
   },
   {
     name: "TikTok Followers | 20000+ [EXTREMLY HIGH QUALITY]",
-    price: 219.99 * ppPrice,
+    price: 23.99 * ppPrice,
+  },
+  {
+    name: "TikTok Followers | 20000+ [EXTREMLY HIGH QUALITY]",
+    price: 35.99 * ppPrice,
   },
 ];
 
@@ -404,21 +423,21 @@ module.exports = {
   async run(discord, bot, message, args) {
     // message.reply("Paypal is limited, please try again later");
 
-    if (message.channel.name.includes("ticket")) {
-      //!message.channel.name.includes("ticket")
+    if (!message.channel.name.includes("ticket")) {
+      //message.channel.name.includes("ticket")
       message.delete();
-      return message
-        .reply(
-          "PP Payments are closed, Sorry but you will have to wait till we get a new PP account"
-        ) // "This command can be only called inside of a ticket"
-        .then(
-          (message) => {
-            setTimeout(() => {
-              message.channel.delete();
-            }, 20000);
-          },
-          (e) => console.log(e)
-        );
+      return message.reply(
+        "This command can be only called inside of a ticket"
+        // "PP Payments are closed, Sorry but you will have to wait till we get a new PP account"
+      );
+      // .then( This is only if the PP is limited
+      //   (message) => {
+      //     setTimeout(() => {
+      //       message.channel.delete();
+      //     }, 20000);
+      //   },
+      // (e) => console.log(e)
+      // );
     }
 
     let ticket = message.channel;
