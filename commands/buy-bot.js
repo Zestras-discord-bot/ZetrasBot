@@ -148,52 +148,6 @@ const productCallOfDutyWarZoneAccounts = [
   },
 ];
 
-// const productFoodAccounts = [
-//   {
-//     name: '[BULK] 15x Buffalo Wild Wings 1 - 999 Points',
-//     price: 1.49 * ppPrice,
-//   },
-//   {
-//     name: '[BULK] 6x Buffalo Wild Wings 1000 - 1999 Points',
-//     price: 1.49 * ppPrice,
-//   },
-//   {
-//     name: '[BULK] 6x Buffalo Wild Wings 2000 - 2999 Points',
-//     price: 1.49 * ppPrice,
-//   },
-//   {
-//     name: '[BULK] 2x Buffalo Wild Wings 3000 - 3999 Points',
-//     price: 3.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 4000 - 4999 Points',
-//     price: 2.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 5000 - 5999 Points',
-//     price: 3.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 6000 - 6999 Points',
-//     price: 4.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 7000 - 7999 Points',
-//     price: 5.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 8000 - 8999 Points',
-//     price: 6.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 9000 - 9999 Points',
-//     price: 7.99 * ppPrice,
-//   },
-//   {
-//     name: 'Buffalo Wild Wings 10000+ Points',
-//     price: 8.99 * ppPrice,
-//   },
-// ];
 const productVpnAccounts = [
   {
     name: "[BULK] 7x NordVPN Accounts | EXP: 2021",
@@ -240,6 +194,7 @@ const productVpnAccounts = [
     price: 1.99 * ppPrice,
   },
 ];
+
 const productOtherAccounts = [
   {
     name: "Phone Verified Battle.net Warzone Accounts",
