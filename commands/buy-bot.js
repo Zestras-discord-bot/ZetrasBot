@@ -234,6 +234,25 @@ const productOtherAccounts = [
   },
 ];
 
+const activeAccountsList = [
+  { list: productLimitedItemsAccounts, name: "Limited Items" },
+  { list: productCallOfDutyAccounts, name: "Call of Duty Accounts" },
+  {
+    list: productCallOfDutyStoreBoughtItemsAccounts,
+    name: "Call of Duty Store Bought Accounts",
+  },
+  {
+    list: productCallOfDutyBlackOpsAccounts,
+    name: "Call of Duty Black Ops Accounts",
+  },
+  {
+    list: productCallOfDutyWarZoneAccounts,
+    name: "Call of Duty War Zone Accounts",
+  },
+  { list: productVpnAccounts, name: "VPN Accounts" },
+  { list: productOtherAccounts, name: "Other Accounts" },
+];
+
 //LIST OF SERVICES
 
 const productSpotifyServices = [
@@ -374,6 +393,15 @@ const productTickTokServices = [
   },
 ];
 
+const activeServicesList = [
+  { list: productSpotifyServices, name: "Spotify Service" },
+  { list: productInstagramServices, name: "Instagram Service" },
+  { list: productYouTubeServices, name: "Youtube Service" },
+  { list: productOnlyFansService, name: "OnlyFans Service" },
+  { list: productTwitchServices, name: "Twitch Services" },
+  { list: productTickTokServices, name: "TickTok Services" },
+];
+
 module.exports = {
   async run(discord, bot, message, args) {
     // message.reply("Paypal is limited, please try again later");
@@ -509,11 +537,20 @@ module.exports = {
 
               if (collectorContent === "service" || collectorContent === "2") {
                 whatLookingForCollector.stop();
+                let activeServices = activeServicesList.map(
+                  (service, index) => {
+                    return `**[${index + 1}]** *${service.name}*`;
+                  }
+                );
+                let description = `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n${activeServices.join(
+                  "\n\n"
+                )}`;
                 message.channel.send(
                   new discord.MessageEmbed()
-                    .setTitle("Which Service ?")
+                    .setTitle("Which Account ?")
                     .setDescription(
-                      "*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Instagram*\n\n**[2]** *YouTube*\n\n**[3]** *Twitch*\n\n**[4]** *Spotify*\n\n**[5]** *TickTok*\n\n**[6]** *OnlyFans Subscription*\n\n**NOTE:** Type `-close` to close the ticket at any time."
+                      description +
+                        "\n\n**NOTE:** Type `-close` to close the ticket at any time."
                     )
                     .setColor(0x36393e)
                 );
@@ -522,94 +559,35 @@ module.exports = {
                 );
                 whichServiceCollector.on("collect", (message) => {
                   collectorContent = message.content.toLowerCase();
+                  let selectedService =
+                    activeServicesList[parseInt(collectorContent) - 1];
 
                   if (
-                    collectorContent === "instagram" ||
-                    collectorContent === "1"
+                    collectorContent === selectedService.name.toLowerCase() ||
+                    collectorContent - 1 ===
+                      activeServicesList.indexOf(
+                        activeServicesList[parseInt(collectorContent) - 1]
+                      )
                   ) {
                     whichServiceCollector.stop();
 
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productInstagramServices
-                        .map(
-                          (product) =>
-                            `**[${
-                              productInstagramServices.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productInstagramServices.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productInstagramServices[number - 1];
-
-                        message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
-                            2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                        const doneCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        doneCollector.on("collect", (message) => {
-                          const doneContent = message.content.toLowerCase();
-
-                          if (doneContent === "-done") {
-                            doneCollector.stop();
-                            message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                            );
-                          }
-                        });
+                    let productsItems = selectedService.list.map(
+                      (product, index) => {
+                        return `**[${index + 1}]** *${
+                          product.name
+                        }* (**$ ${product.price.toFixed(2)}**)`;
                       }
-                    });
-                  } else if (
-                    collectorContent === "youtube" ||
-                    collectorContent === "2"
-                  ) {
-                    whichServiceCollector.stop();
+                    );
 
                     message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productYouTubeServices
-                        .map(
-                          (product) =>
-                            `**[${
-                              productYouTubeServices.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                        "\n"
+                      )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                     );
 
                     const productCollector = ticket.createMessageCollector(
                       (x) => true
                     );
-
                     productCollector.on("collect", (message) => {
                       const productContent = message.content.toLowerCase();
                       const number = parseInt(productContent);
@@ -617,268 +595,21 @@ module.exports = {
                       if (number.toString() === "NaN") return;
                       else if (
                         number < 1 ||
-                        number > productYouTubeServices.length
+                        number > selectedService.list.length
                       )
                         return message.channel.send(
                           `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
                       else {
                         productCollector.stop();
-                        const product = productYouTubeServices[number - 1];
+                        const product = selectedService.list[number - 1];
 
                         message.channel.send(
                           `*Send*  **$${product.price.toFixed(
                             2
                           )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
-                        const doneCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
 
-                        doneCollector.on("collect", (message) => {
-                          const doneContent = message.content.toLowerCase();
-
-                          if (doneContent === "-done") {
-                            doneCollector.stop();
-                            message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                            );
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "Twitch" ||
-                    collectorContent === "3"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productTwitchServices
-                        .map(
-                          (product) =>
-                            `**[${
-                              productTwitchServices.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productTwitchServices.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productTwitchServices[number - 1];
-
-                        message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
-                            2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                        const doneCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        doneCollector.on("collect", (message) => {
-                          const doneContent = message.content.toLowerCase();
-
-                          if (doneContent === "-done") {
-                            doneCollector.stop();
-                            message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                            );
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "Spotify" ||
-                    collectorContent === "4"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productSpotifyServices
-                        .map(
-                          (product) =>
-                            `**[${
-                              productSpotifyServices.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productSpotifyServices.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productSpotifyServices[number - 1];
-
-                        message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
-                            2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                        const doneCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        doneCollector.on("collect", (message) => {
-                          const doneContent = message.content.toLowerCase();
-
-                          if (doneContent === "-done") {
-                            doneCollector.stop();
-                            message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                            );
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "TickTok" ||
-                    collectorContent === "5"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productTickTokServices
-                        .map(
-                          (product) =>
-                            `**[${
-                              productTickTokServices.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productTickTokServices.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productTickTokServices[number - 1];
-
-                        message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
-                            2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                        const doneCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        doneCollector.on("collect", (message) => {
-                          const doneContent = message.content.toLowerCase();
-
-                          if (doneContent === "-done") {
-                            doneCollector.stop();
-                            message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                            );
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "Only Fans" ||
-                    collectorContent === "6"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productOnlyFansService
-                        .map(
-                          (product) =>
-                            `**[${
-                              productOnlyFansService.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productOnlyFansService.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productOnlyFansService[number - 1];
-
-                        message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
-                            2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
                         const doneCollector = ticket.createMessageCollector(
                           (x) => true
                         );
@@ -902,45 +633,57 @@ module.exports = {
                 collectorContent === "1"
               ) {
                 whatLookingForCollector.stop();
+                let activeAccounts = activeAccountsList.map(
+                  (account, index) => {
+                    return `**[${index + 1}]** *${account.name}*`;
+                  }
+                );
+                let description = `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n${activeAccounts.join(
+                  "\n\n"
+                )}`;
                 message.channel.send(
                   new discord.MessageEmbed()
-                    .setTitle("Which Account")
+                    .setTitle("Which Service ?")
                     .setDescription(
-                      "*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Call of Duty*\n\n**[2]** *Vpn*\n\n**[3]** *Limited Items*\n\n**[4]** *Others*\n\n**NOTE:** Type `-close` to close the ticket at any time."
+                      description +
+                        "\n\n**NOTE:** Type `-close` to close the ticket at any time."
                     )
                     .setColor(0x36393e)
                 );
-                const whichServiceCollector = ticket.createMessageCollector(
+                const whichAccountCollector = ticket.createMessageCollector(
                   (x) => true
                 );
-                whichServiceCollector.on("collect", (message) => {
+                whichAccountCollector.on("collect", (message) => {
                   collectorContent = message.content.toLowerCase();
+                  let selectedAccount =
+                    activeAccountsList[parseInt(collectorContent) - 1];
 
                   if (
-                    collectorContent === "call of duty" ||
-                    collectorContent === "1"
+                    collectorContent === selectedAccount.name.toLowerCase() ||
+                    collectorContent - 1 ===
+                      activeAccountsList.indexOf(
+                        activeAccountsList[parseInt(collectorContent) - 1]
+                      )
                   ) {
-                    whichServiceCollector.stop();
+                    whichAccountCollector.stop();
+
+                    let productsItems = selectedAccount.list.map(
+                      (product, index) => {
+                        return `**[${index + 1}]** *${
+                          product.name
+                        }* (**$ ${product.price.toFixed(2)}**)`;
+                      }
+                    );
 
                     message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productCallOfDutyAccounts
-                        .map(
-                          (product) =>
-                            `**[${
-                              productCallOfDutyAccounts.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                        "\n"
+                      )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                     );
 
                     const productCollector = ticket.createMessageCollector(
                       (x) => true
                     );
-
                     productCollector.on("collect", (message) => {
                       const productContent = message.content.toLowerCase();
                       const number = parseInt(productContent);
@@ -948,14 +691,14 @@ module.exports = {
                       if (number.toString() === "NaN") return;
                       else if (
                         number < 1 ||
-                        number > productCallOfDutyAccounts.length
+                        number > selectedAccount.list.length
                       )
                         return message.channel.send(
                           `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
                       else {
                         productCollector.stop();
-                        const product = productCallOfDutyAccounts[number - 1];
+                        const product = selectedAccount.list[number - 1];
 
                         message.channel.send(
                           `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
@@ -978,348 +721,12 @@ module.exports = {
 
                             message.channel.send(
                               `*Send*  **$${(
-                                product.price.toFixed(2) * howManyContent
+                                product.price * howManyContent
                               ).toFixed(
                                 2
                               )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                             );
-                            const doneCollector = ticket.createMessageCollector(
-                              (x) => true
-                            );
 
-                            doneCollector.on("collect", (message) => {
-                              const doneContent = message.content.toLowerCase();
-
-                              if (doneContent === "-done") {
-                                doneCollector.stop();
-                                message.channel.send(
-                                  "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                                );
-                              }
-                            });
-                          }
-                        });
-                      }
-                    });
-                    // } else if (
-                    //   collectorContent === 'food' ||
-                    //   collectorContent === '3'
-                    // ) {
-                    //   whichServiceCollector.stop();
-
-                    //   message.channel.send(
-                    //     `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productFoodAccounts
-                    //       .map(
-                    //         (product) =>
-                    //           `**[${
-                    //             productFoodAccounts.indexOf(product) + 1
-                    //           }]** *${product.name}* (**$${product.price.toFixed(
-                    //             2
-                    //           )}**)`
-                    //       )
-                    //       .join(
-                    //         '\n'
-                    //       )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    //   );
-
-                    //   const productCollector = ticket.createMessageCollector(
-                    //     (x) => true
-                    //   );
-
-                    //   productCollector.on('collect', (message) => {
-                    //     const productContent = message.content.toLowerCase();
-                    //     const number = parseInt(productContent);
-
-                    //     if (number.toString() === 'NaN') return;
-                    //     else if (
-                    //       number < 1 ||
-                    //       number > productFoodAccounts.length
-                    //     )
-                    //       return message.channel.send(
-                    //         `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    //       );
-                    //     else {
-                    //       productCollector.stop();
-                    //       const product = productFoodAccounts[number - 1];
-
-                    //       message.channel.send(
-                    //         `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    //       );
-
-                    //       const howManyCollector = ticket.createMessageCollector(
-                    //         (x) => true
-                    //       );
-
-                    //       howManyCollector.on('collect', (message) => {
-                    //         const howManyContent = parseInt(message.content);
-
-                    //         if (howManyContent.toString() === 'NaN') return;
-                    //         else if (howManyContent < 1 || howManyContent > 999)
-                    //           return message.channel.send(
-                    //             `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    //           );
-                    //         else {
-                    //           howManyCollector.stop();
-
-                    //           message.channel.send(
-                    //             `*Send*  **$${(
-                    //               product.price.toFixed(2) * howManyContent
-                    //             ).toFixed(
-                    //               2
-                    //             )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    //           );
-                    //           const doneCollector = ticket.createMessageCollector(
-                    //             (x) => true
-                    //           );
-
-                    //           doneCollector.on('collect', (message) => {
-                    //             const doneContent = message.content.toLowerCase();
-
-                    //             if (doneContent === '-done') {
-                    //               doneCollector.stop();
-                    //               message.channel.send(
-                    //                 "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                    //               );
-                    //             }
-                    //           });
-                    //         }
-                    //       });
-                    //     }
-                    //   });
-                  } else if (
-                    collectorContent === "vpn" ||
-                    collectorContent === "2"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productVpnAccounts
-                        .map(
-                          (product) =>
-                            `**[${
-                              productVpnAccounts.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (number < 1 || number > productVpnAccounts.length)
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productVpnAccounts[number - 1];
-
-                        message.channel.send(
-                          `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-
-                        const howManyCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        howManyCollector.on("collect", (message) => {
-                          const howManyContent = parseInt(message.content);
-
-                          if (howManyContent.toString() === "NaN") return;
-                          else if (howManyContent < 1 || howManyContent > 999)
-                            return message.channel.send(
-                              `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
-                          else {
-                            howManyCollector.stop();
-
-                            message.channel.send(
-                              `*Send*  **$${(
-                                product.price.toFixed(2) * howManyContent
-                              ).toFixed(
-                                2
-                              )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
-                            const doneCollector = ticket.createMessageCollector(
-                              (x) => true
-                            );
-
-                            doneCollector.on("collect", (message) => {
-                              const doneContent = message.content.toLowerCase();
-
-                              if (doneContent === "-done") {
-                                doneCollector.stop();
-                                message.channel.send(
-                                  "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                                );
-                              }
-                            });
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "limited items" ||
-                    collectorContent === "3"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productLimitedItemsAccounts
-                        .map(
-                          (product) =>
-                            `**[${
-                              productLimitedItemsAccounts.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productLimitedItemsAccounts.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productLimitedItemsAccounts[number - 1];
-
-                        message.channel.send(
-                          `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-
-                        const howManyCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        howManyCollector.on("collect", (message) => {
-                          const howManyContent = parseInt(message.content);
-
-                          if (howManyContent.toString() === "NaN") return;
-                          else if (howManyContent < 1 || howManyContent > 999)
-                            return message.channel.send(
-                              `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
-                          else {
-                            howManyCollector.stop();
-
-                            message.channel.send(
-                              `*Send*  **$${(
-                                product.price.toFixed(2) * howManyContent
-                              ).toFixed(
-                                2
-                              )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
-                            const doneCollector = ticket.createMessageCollector(
-                              (x) => true
-                            );
-
-                            doneCollector.on("collect", (message) => {
-                              const doneContent = message.content.toLowerCase();
-
-                              if (doneContent === "-done") {
-                                doneCollector.stop();
-                                message.channel.send(
-                                  "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
-                                );
-                              }
-                            });
-                          }
-                        });
-                      }
-                    });
-                  } else if (
-                    collectorContent === "others" ||
-                    collectorContent === "4"
-                  ) {
-                    whichServiceCollector.stop();
-
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productOtherAccounts
-                        .map(
-                          (product) =>
-                            `**[${
-                              productOtherAccounts.indexOf(product) + 1
-                            }]** *${product.name}* (**$${product.price.toFixed(
-                              2
-                            )}**)`
-                        )
-                        .join(
-                          "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
-
-                    const productCollector = ticket.createMessageCollector(
-                      (x) => true
-                    );
-
-                    productCollector.on("collect", (message) => {
-                      const productContent = message.content.toLowerCase();
-                      const number = parseInt(productContent);
-
-                      if (number.toString() === "NaN") return;
-                      else if (
-                        number < 1 ||
-                        number > productOtherAccounts.length
-                      )
-                        return message.channel.send(
-                          `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-                      else {
-                        productCollector.stop();
-                        const product = productOtherAccounts[number - 1];
-
-                        message.channel.send(
-                          `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                        );
-
-                        const howManyCollector = ticket.createMessageCollector(
-                          (x) => true
-                        );
-
-                        howManyCollector.on("collect", (message) => {
-                          const howManyContent = parseInt(message.content);
-
-                          if (howManyContent.toString() === "NaN") return;
-                          else if (howManyContent < 1 || howManyContent > 999)
-                            return message.channel.send(
-                              `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
-                          else {
-                            howManyCollector.stop();
-
-                            message.channel.send(
-                              `*Send*  **$${(
-                                product.price.toFixed(2) * howManyContent
-                              ).toFixed(
-                                2
-                              )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                            );
                             const doneCollector = ticket.createMessageCollector(
                               (x) => true
                             );
