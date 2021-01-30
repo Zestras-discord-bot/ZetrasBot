@@ -393,6 +393,17 @@ const productTickTokServices = [
   },
 ];
 
+const productCallOfDutyServices = [
+  {
+    name: "Modern Warfare Unlock All | RUT ULTIMATE Key | 24h PC ",
+    price: 29.99 * ppPrice,
+  },
+  {
+    name: "Modern Warfare Unlock All | Service | Xbox/PS4 ",
+    price: 34.99 * ppPrice,
+  },
+];
+
 const activeServicesList = [
   { list: productSpotifyServices, name: "Spotify Service" },
   { list: productInstagramServices, name: "Instagram Service" },
@@ -400,6 +411,7 @@ const activeServicesList = [
   { list: productOnlyFansService, name: "OnlyFans Service" },
   { list: productTwitchServices, name: "Twitch Services" },
   { list: productTickTokServices, name: "TickTok Services" },
+  { list: productCallOfDutyServices, name: "Call of Duty Services" },
 ];
 
 module.exports = {
