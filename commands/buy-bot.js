@@ -396,11 +396,11 @@ const productTikTokServices = [
 const productCallOfDutyServices = [
   {
     name: "Modern Warfare Unlock All | RUT ULTIMATE Key | 24h PC ",
-    price: 29.99 * ppPrice,
+    price: 39.99 * ppPrice,
   },
   {
     name: "Modern Warfare Unlock All | Service | Xbox/PS4 ",
-    price: 34.99 * ppPrice,
+    price: 45.99 * ppPrice,
   },
 ];
 
