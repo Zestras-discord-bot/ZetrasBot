@@ -388,7 +388,7 @@ const productTikTokServices = [
     price: 23.99 * ppPrice,
   },
   {
-    name: "TikTok Followers | 20000+ [EXTREMLY HIGH QUALITY]",
+    name: "TikTok Followers | 30000+ [EXTREMLY HIGH QUALITY]",
     price: 35.99 * ppPrice,
   },
 ];
@@ -586,9 +586,11 @@ module.exports = {
 
                     let productsItems = selectedService.list.map(
                       (product, index) => {
-                        return `**[${index + 1}]** *${
-                          product.name
-                        }* (**$ ${product.price.toFixed(2)}**)`;
+                        return `**[${
+                          index + 1
+                        }]** *${product.name.trim()}* (**$ ${product.price.toFixed(
+                          2
+                        )}**)`;
                       }
                     );
 
@@ -620,7 +622,7 @@ module.exports = {
                         message.channel.send(
                           `*Send*  **$${product.price.toFixed(
                             2
-                          )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                          )}** *to* **${ppEmail}** *as friends and family. **DO NOT ADD A NOTE | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT**.  Remember to also change the receiver amount to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
 
                         const doneCollector = ticket.createMessageCollector(
@@ -682,9 +684,11 @@ module.exports = {
 
                     let productsItems = selectedAccount.list.map(
                       (product, index) => {
-                        return `**[${index + 1}]** *${
-                          product.name
-                        }* (**$ ${product.price.toFixed(2)}**)`;
+                        return `**[${
+                          index + 1
+                        }]** *${product.name.trim()}* (**$ ${product.price.toFixed(
+                          2
+                        )}**)`;
                       }
                     );
 
@@ -737,7 +741,7 @@ module.exports = {
                                 product.price * howManyContent
                               ).toFixed(
                                 2
-                              )}** *to* **${ppEmail}** *as friends and family. Remember to also change the receiver amount from SEK to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                              )}** *to* **${ppEmail}** *as friends and family. **DO NOT ADD A NOTE | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT**. Remember to also change the receiver amount to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                             );
 
                             const doneCollector = ticket.createMessageCollector(
