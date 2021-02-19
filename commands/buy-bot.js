@@ -136,15 +136,15 @@ const productCallOfDutyBlackOpsAccounts = [
 const productCallOfDutyWarZoneAccounts = [
   {
     name: "CALL OF DUTY®: MW  | 100+ WarZone Wins",
-    price: 2.5 * ppPrice,
+    price: 4.58 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 200+ WarZone Wins",
-    price: 9.99 * ppPrice,
+    price: 16.08 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 300+ WarZone Wins",
-    price: 14.99 * ppPrice,
+    price: 27.58 * ppPrice,
   },
 ];
 
