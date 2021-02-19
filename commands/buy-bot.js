@@ -472,7 +472,7 @@ module.exports = {
         paymentMethodCollector.stop();
 
         message.channel.send(
-          `*You have selected PayPal as your payment method.\n\nPlease note that PayPal prices are* **15%** *higher than bitcoin prices on our shop.*\n\n*Also please note that Zestras only accepts PayPal if you use Friends and Family.*\n\n*Lastly, please make sure that you accept these terms of service before you send any money: https://zestras.net/terms*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+          `*You have selected **PayPal** as your payment method. :paypal~1:\n\nPlease **note** that **PayPal** prices are* **15%** higher than **Bitcoin** prices on our shop.\n\nAlso please **note** that **Zestras only** accepts **PayPal** if you have a *Friends & Family* payment option. Some countries that **DOESN'T** have a *Friends & Family* payment option are: *Brazil, China, India, Japan, Jamaica, Aruba*. If your country is in this list, then you **cannot** buy! **(please double check if you're able to send payments as Friends & Family before continuing)**\n\nLastly, **please** make sure that you **accept** these **Terms of service** before you send any money: **https://zestras.net/terms**\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
         );
 
         message.channel.send(
@@ -536,7 +536,7 @@ module.exports = {
               new discord.MessageEmbed()
                 .setTitle("What are you looking for ??")
                 .setDescription(
-                  "*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n**[1]** *Accounts*\n\n**[2]** *Services*\n\n**NOTE:** Type `-close` to close the ticket at any time."
+                  "*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n**[1]** *Accounts*\n\n**[2]** *Services*\n\n**NOTE:** Type `-close` to close the ticket at any time."
                 )
                 .setColor(0x36393e)
             );
@@ -555,7 +555,7 @@ module.exports = {
                     return `**[${index + 1}]** *${service.name}*`;
                   }
                 );
-                let description = `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n${activeServices.join(
+                let description = `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n${activeServices.join(
                   "\n\n"
                 )}`;
                 message.channel.send(
@@ -588,14 +588,14 @@ module.exports = {
                       (product, index) => {
                         return `**[${
                           index + 1
-                        }]** *${product.name.trim()}* (**$ ${product.price.toFixed(
+                        }]** *${product.name.trim()}* [**$${product.price.toFixed(
                           2
-                        )}**)`;
+                        )}**]`;
                       }
                     );
 
                     message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                      `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
                         "\n"
                       )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                     );
@@ -620,9 +620,9 @@ module.exports = {
                         const product = selectedService.list[number - 1];
 
                         message.channel.send(
-                          `*Send*  **$${product.price.toFixed(
+                          `Send:**$${product.price.toFixed(
                             2
-                          )}** *to* **${ppEmail}** *as friends and family. **DO NOT ADD A NOTE | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT**.  Remember to also change the receiver amount to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                          )}** *to* **${ppEmail}** as **Friends and Family**. \n\n **DO NOT ADD A NOTE TO THE PAYMENT | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT!**. \n\n **Remember** to also **change** the **receiver currency** to: **USD ($)** before sending the money:\n https://imgur.com/a/e55EV2Y \nhttps://imgur.com/a/0P3TVYY \n\n*Once you have sent the money, **provide** screenshot proof that you have sent the money as **Friends and Family** to the correct **PayPal** email by showing the receipt. Receipt **MUST** display the Email you sent the money to and Fee for the Friends & Family payment option (**If you do not provide this proof then we wont send out your product**).  Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
 
                         const doneCollector = ticket.createMessageCollector(
@@ -635,7 +635,7 @@ module.exports = {
                           if (doneContent === "-done") {
                             doneCollector.stop();
                             message.channel.send(
-                              "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
+                              "*Thank you for your order!*\n**Zestras** will review this ticket soon and fulfill your order. This can take up to **24 hours** if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.\n\n***NOTE**: Do **NOT** delete this ticket."
                             );
                           }
                         });
@@ -653,7 +653,7 @@ module.exports = {
                     return `**[${index + 1}]** *${account.name}*`;
                   }
                 );
-                let description = `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n${activeAccounts.join(
+                let description = `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n${activeAccounts.join(
                   "\n\n"
                 )}`;
                 message.channel.send(
@@ -686,14 +686,14 @@ module.exports = {
                       (product, index) => {
                         return `**[${
                           index + 1
-                        }]** *${product.name.trim()}* (**$ ${product.price.toFixed(
+                        }]** *${product.name.trim()}* [**$${product.price.toFixed(
                           2
-                        )}**)`;
+                        )}**]`;
                       }
                     );
 
                     message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here: https://zestras.net/*\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                      `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
                         "\n"
                       )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                     );
@@ -718,7 +718,7 @@ module.exports = {
                         const product = selectedAccount.list[number - 1];
 
                         message.channel.send(
-                          `*How Many ${product.name} would you like?*\n\n*Type any number between 1 - 999 to choose the amount of accounts you want to buy.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                          `*How Many **${product.name}** would you like?*\n\n*Type any number between **1 - 999** to choose the amount of accounts you want to purchase.* \n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
 
                         const howManyCollector = ticket.createMessageCollector(
@@ -741,7 +741,7 @@ module.exports = {
                                 product.price * howManyContent
                               ).toFixed(
                                 2
-                              )}** *to* **${ppEmail}** *as friends and family. **DO NOT ADD A NOTE | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT**. Remember to also change the receiver amount to **USD ($)** before sending the money*\n*Once you have sent the money, provide screenshot proof that you have sent the money as friends and family to the correct PayPal. Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                              )}** *to* **${ppEmail}** as **Friends and Family**. \n\n **DO NOT ADD A NOTE TO THE PAYMENT | IF YOU DO WE WILL NOT SEND OUT THE PRODUCT!**. \n\n **Remember** to also **change** the **receiver currency** to: **USD ($)** before sending the money:\n https://imgur.com/a/e55EV2Y \nhttps://imgur.com/a/0P3TVYY \n\n*Once you have sent the money, **provide** screenshot proof that you have sent the money as **Friends and Family** to the correct **PayPal** email by showing the receipt. Receipt **MUST** display the Email you sent the money to and Fee for the Friends & Family payment option (**If you do not provide this proof then we wont send out your product**).  Once you have done that, type* **-done** *.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                             );
 
                             const doneCollector = ticket.createMessageCollector(
@@ -754,7 +754,7 @@ module.exports = {
                               if (doneContent === "-done") {
                                 doneCollector.stop();
                                 message.channel.send(
-                                  "*Thank you for your order!*\n*Zestras will review this ticket soon and fulfill your order. This can take up to* **24 hours** *if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.*\n\n***NOTE**: Do **NOT** delete this ticket.*"
+                                  "*Thank you for your order!*\n**Zestras** will review this ticket soon and fulfill your order. This can take up to **24 hours** if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.\n\n***NOTE**: Do **NOT** delete this ticket."
                                 );
                               }
                             });
