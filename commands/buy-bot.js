@@ -368,28 +368,16 @@ const productTwitchServices = [
 
 const productTikTokServices = [
   {
-    name: "[BULK] 2x TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
-    price: 2.4 * ppPrice,
+    name: "TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
+    price: 10.78 * ppPrice,
   },
   {
     name: "TikTok Followers | 2500+ [EXTREMLY HIGH QUALITY]",
-    price: 2.99 * ppPrice,
+    price: 26.95 * ppPrice,
   },
   {
     name: "TikTok Followers | 5000+ [EXTREMLY HIGH QUALITY]",
-    price: 5.99 * ppPrice,
-  },
-  {
-    name: "TikTok Followers | 10000+ [EXTREMLY HIGH QUALITY]",
-    price: 11.99 * ppPrice,
-  },
-  {
-    name: "TikTok Followers | 20000+ [EXTREMLY HIGH QUALITY]",
-    price: 23.99 * ppPrice,
-  },
-  {
-    name: "TikTok Followers | 30000+ [EXTREMLY HIGH QUALITY]",
-    price: 35.99 * ppPrice,
+    price: 53.9 * ppPrice,
   },
 ];
 
