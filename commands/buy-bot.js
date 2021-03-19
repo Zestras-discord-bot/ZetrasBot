@@ -10,21 +10,16 @@ const ppPrice = 1.15;
 
 const productLimitedItemsAccounts = [
   {
-    name: "[BULK] 4x DoorDash Accounts w/ CC Connected",
-    price: 1.6 * ppPrice,
+    name: "Call of Duty Black Ops: Cold War Accounts | 35000+ Kills",
+    price: 6.49 * ppPrice,
   },
   {
-    name: "CALL OF DUTY®: MW  | Damascus Camo w/ 29+ Store Bought Items",
-    price: 27.99 * ppPrice,
+    name: "CALL OF DUTY®: MW  | 50+ WarZone Wins",
+    price: 1.99 * ppPrice,
   },
   {
-    name:
-      "CALL OF DUTY®: MW  | Damascus Camo w/ 10+ Obsidian Camo Weapons + 9000+ CW Kills",
-    price: 35.99 * ppPrice,
-  },
-  {
-    name: "CALL OF DUTY®: MW  | 43+ Store Bought Items",
-    price: 8.49 * ppPrice,
+    name: "CALL OF DUTY®: MW  Accounts | 400+ WarZone Wins",
+    price: 33.99 * ppPrice,
   },
 ];
 
@@ -116,35 +111,35 @@ const productCallOfDutyStoreBoughtItemsAccounts = [
 
 const productCallOfDutyBlackOpsAccounts = [
   {
-    name: "CALL OF DUTY®: BO  Cold War Accounts | 5000+ Kills",
+    name: "[BULK] 3x CALL OF DUTY®: BO  Cold War Accounts | 5000+ Kills",
     price: 1.49 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: BO  Cold War Accounts | 10000+ Kills",
-    price: 2.49 * ppPrice,
+    price: 1.49 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: BO  Cold War Accounts | 15000+ Kills",
-    price: 3.49 * ppPrice,
+    price: 2.49 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: BO  Cold War Accounts | 20000+ Kills",
-    price: 4.49 * ppPrice,
+    price: 3.49 * ppPrice,
   },
 ];
 
 const productCallOfDutyWarZoneAccounts = [
   {
     name: "CALL OF DUTY®: MW  | 100+ WarZone Wins",
-    price: 4.58 * ppPrice,
+    price: 3.99 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 200+ WarZone Wins",
-    price: 16.08 * ppPrice,
+    price: 13.99 * ppPrice,
   },
   {
     name: "CALL OF DUTY®: MW  | 300+ WarZone Wins",
-    price: 27.58 * ppPrice,
+    price: 23.99 * ppPrice,
   },
 ];
 
@@ -277,27 +272,27 @@ const productSpotifyServices = [
 const productInstagramServices = [
   {
     name: "Instagram Followers | 1000+ [REFILLS]",
-    price: 3.64 * ppPrice,
+    price: 3.54 * ppPrice,
   },
   {
     name: "Instagram Followers | 2500+ [REFILLS]",
-    price: 9.1 * ppPrice,
+    price: 8.8 * ppPrice,
   },
   {
     name: "Instagram Followers | 5000+ [REFILLS]",
-    price: 18.2 * ppPrice,
+    price: 17.6 * ppPrice,
   },
   {
     name: "Instagram Followers | 10000+ [REFILLS]",
-    price: 36.4 * ppPrice,
+    price: 35.2 * ppPrice,
   },
   {
     name: "Instagram Followers | 25000+ [REFILLS]",
-    price: 90.99 * ppPrice,
+    price: 87.99 * ppPrice,
   },
   {
     name: "Instagram Followers | 50000+ [REFILLS]",
-    price: 181.99 * ppPrice,
+    price: 175.99 * ppPrice,
   },
   {
     name: "Instagram Likes | 1000+",
@@ -316,15 +311,15 @@ const productInstagramServices = [
 const productYouTubeServices = [
   {
     name: "YouTube Subscribers | 250+",
-    price: 2.93 * ppPrice,
+    price: 4.55 * ppPrice,
   },
   {
     name: "YouTube Subscribers | 500+",
-    price: 5.85 * ppPrice,
+    price: 9.1 * ppPrice,
   },
   {
     name: "YouTube Subscribers | 1000+",
-    price: 11.7 * ppPrice,
+    price: 18.2 * ppPrice,
   },
   {
     name: "YouTube Likes | 500+",
@@ -343,41 +338,41 @@ const productYouTubeServices = [
 const productOnlyFansService = [
   {
     name: "OnlyFans Subscription Service (5x Subs) ",
-    price: 2.99 * ppPrice,
+    price: 3.99 * ppPrice,
   },
 ];
 
 const productTwitchServices = [
   {
     name: "Twitch Followers | 1000+",
-    price: 3.49 * ppPrice,
+    price: 5.4 * ppPrice,
   },
   {
     name: "Twitch Followers | 3000+",
-    price: 10.49 * ppPrice,
+    price: 16.2 * ppPrice,
   },
   {
     name: "Twitch Followers | 5000+",
-    price: 17.5 * ppPrice,
+    price: 27.0 * ppPrice,
   },
   {
     name: "Twitch Followers | 10000+",
-    price: 34.99 * ppPrice,
+    price: 54.0 * ppPrice,
   },
 ];
 
 const productTikTokServices = [
   {
     name: "TikTok Followers | 1000+ [EXTREMLY HIGH QUALITY]",
-    price: 10.78 * ppPrice,
+    price: 5.12 * ppPrice,
   },
   {
     name: "TikTok Followers | 2500+ [EXTREMLY HIGH QUALITY]",
-    price: 26.95 * ppPrice,
+    price: 12.8 * ppPrice,
   },
   {
     name: "TikTok Followers | 5000+ [EXTREMLY HIGH QUALITY]",
-    price: 53.9 * ppPrice,
+    price: 25.6 * ppPrice,
   },
 ];
 
@@ -397,7 +392,7 @@ const activeServicesList = [
   { list: productInstagramServices, name: "Instagram Services" },
   { list: productYouTubeServices, name: "Youtube Services" },
   { list: productOnlyFansService, name: "OnlyFans Services" },
-  // { list: productTwitchServices, name: "Twitch Services" },
+  { list: productTwitchServices, name: "Twitch Services" },
   { list: productTikTokServices, name: "TikTok  Services" },
   { list: productCallOfDutyServices, name: "Call of Duty Services" },
 ];
