@@ -10,31 +10,41 @@ const ppPrice = 1.15;
 
 const productLimitedItemsAccounts = [
     {
-        name: "Call of Duty Black Ops: Cold War Accounts | 35000+ Kills",
-        price: 6.49 * ppPrice,
+        name:
+            "CALL OF DUTY®: MW | Damascus Camo w/ 1+ Obsidian Weapon + 374 WarZone Wins + 2,92KD ",
+        price: 79.99 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  | 50+ WarZone Wins",
-        price: 1.99 * ppPrice,
+        name:
+            "CALL OF DUTY®: MW | Damascus Camo w/ 10+ Obsidian Weapons + 167 WarZone Wins + 44K CW Kills ",
+        price: 69.99 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  Accounts | 400+ WarZone Wins",
-        price: 33.99 * ppPrice,
+        name: "CALL OF DUTY®: MW | Damascus Camo w/ 10+ Obsidian Weapons ",
+        price: 63.99 * ppPrice,
+    },
+    {
+        name:
+            "CALL OF DUTY®: MW | Damascus Camo w/ 1+ Obsidian Weapon + 184 WarZone Wins ",
+        price: 27.99 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: MW | 3x Obsidian Snipers ",
+        price: 2.99 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: MW  Accounts | 480+ WarZone Wins",
+        price: 34.99 * ppPrice,
     },
 ];
 
 const productCallOfDutyAccounts = [
     {
-        name: "[BULK] 150x CALL OF DUTY®: MW  | Random Stats",
-        price: 1.5 * ppPrice,
-    },
-    {
-        name: "CALL OF DUTY®: MW  | Damascus Camo | Email Access",
+        name: "CALL OF DUTY®: MW  | Damascus Camo",
         price: 22.99 * ppPrice,
     },
     {
-        name:
-            "CALL OF DUTY®: MW  | Damascus Camo + Obsidian Camo | Email Access",
+        name: "CALL OF DUTY®: MW  | Damascus Camo + Obsidian Camo",
         price: 24.99 * ppPrice,
     },
     {
@@ -50,23 +60,35 @@ const productCallOfDutyAccounts = [
         price: 3.49 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  | 20+ Platinum Weapons | Email Access",
+        name: "CALL OF DUTY®: MW  | 20+ Platinum Weapons ",
         price: 4.49 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  | 25+ Platinum Weapons | Email Access",
+        name: "CALL OF DUTY®: MW  | 25+ Platinum Weapons ",
         price: 5.49 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  | 30+ Platinum Weapons | Email Access",
+        name: "CALL OF DUTY®: MW  | 30+ Platinum Weapons ",
         price: 6.49 * ppPrice,
     },
     {
-        name: "[BULK] 15x CALL OF DUTY®: MW  | 1+ Gold Weapons | Email Access",
+        name: "CALL OF DUTY®: MW  | 35+ Platinum Weapons ",
+        price: 7.49 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: MW  | 40+ Platinum Weapons ",
+        price: 8.49 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: MW  | 45+ Platinum Weapons ",
+        price: 9.49 * ppPrice,
+    },
+    {
+        name: "[BULK] 15x CALL OF DUTY®: MW  | 1+ Gold Weapons ",
         price: 1.5 * ppPrice,
     },
     {
-        name: "[BULK] 4x CALL OF DUTY®: MW  | 5+ Gold Weapons | Email Access",
+        name: "[BULK] 4x CALL OF DUTY®: MW  | 5+ Gold Weapons ",
         price: 1.6 * ppPrice,
     },
     {
@@ -74,12 +96,11 @@ const productCallOfDutyAccounts = [
         price: 1.6 * ppPrice,
     },
     {
-        name:
-            "[BULK] 2x CALL OF DUTY®: MW  | 1+ Obsidian Weapons | Email Access",
+        name: "[BULK] 2x CALL OF DUTY®: MW  | 1+ Obsidian Weapons",
         price: 0.99 * ppPrice,
     },
     {
-        name: "CALL OF DUTY®: MW  | 5+ Obsidian Weapons | Email Access",
+        name: "CALL OF DUTY®: MW  | 5+ Obsidian Weapons",
         price: 4.49 * ppPrice,
     },
 ];
@@ -113,8 +134,8 @@ const productCallOfDutyStoreBoughtItemsAccounts = [
 
 const productCallOfDutyBlackOpsAccounts = [
     {
-        name: "[BULK] 3x CALL OF DUTY®: BO  Cold War Accounts | 5000+ Kills",
-        price: 1.49 * ppPrice,
+        name: "[BULK] 8x CALL OF DUTY®: BO  Cold War Accounts | 5000+ Kills",
+        price: 1.6 * ppPrice,
     },
     {
         name: "CALL OF DUTY®: BO  Cold War Accounts | 10000+ Kills",
@@ -128,20 +149,40 @@ const productCallOfDutyBlackOpsAccounts = [
         name: "CALL OF DUTY®: BO  Cold War Accounts | 20000+ Kills",
         price: 3.49 * ppPrice,
     },
+    {
+        name: "CALL OF DUTY®: BO  Cold War Accounts | 30000+ Kills",
+        price: 5.49 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: BO  Cold War Accounts | 40000+ Kills",
+        price: 7.49 * ppPrice,
+    },
 ];
 
 const productCallOfDutyWarZoneAccounts = [
     {
+        name: "[BULK] 150x CALL OF DUTY®: MW  | Random Stats",
+        price: 1.5 * ppPrice,
+    },
+    {
+        name: "[BULK] 2x CALL OF DUTY®: MW  | 50+ WarZone Wins",
+        price: 1.0 * ppPrice,
+    },
+    {
         name: "CALL OF DUTY®: MW  | 100+ WarZone Wins",
-        price: 3.99 * ppPrice,
+        price: 2.99 * ppPrice,
     },
     {
         name: "CALL OF DUTY®: MW  | 200+ WarZone Wins",
-        price: 13.99 * ppPrice,
+        price: 12.99 * ppPrice,
     },
     {
         name: "CALL OF DUTY®: MW  | 300+ WarZone Wins",
         price: 23.99 * ppPrice,
+    },
+    {
+        name: "CALL OF DUTY®: MW  | 400+ WarZone Wins",
+        price: 33.99 * ppPrice,
     },
 ];
 
@@ -202,6 +243,10 @@ const productOtherAccounts = [
         price: 9.99 * ppPrice,
     },
     {
+        name: " [UKRAINE] Phone Verified Battle.net Warzone Accounts",
+        price: 1.99 * ppPrice,
+    },
+    {
         name: "Battle.net Phone Verification Service [ANY COUNTRY]",
         price: 1.99 * ppPrice,
     },
@@ -253,10 +298,10 @@ const activeAccountsList = [
 //LIST OF SERVICES
 
 const productSpotifyServices = [
-    {
-        name: "Spotify Premium Upgrade Service",
-        price: 2.99 * ppPrice,
-    },
+    // {
+    //     name: "Spotify Premium Upgrade Service",
+    //     price: 2.99 * ppPrice,
+    // },
     {
         name: "Spotify Followers | 1000+",
         price: 4.59 * ppPrice,
@@ -273,27 +318,27 @@ const productSpotifyServices = [
 
 const productInstagramServices = [
     {
-        name: "Instagram Followers | 1000+ [REFILLS]",
-        price: 3.54 * ppPrice,
+        name: "Instagram Followers | 1000+ [REAL QUALITY]",
+        price: 3.52 * ppPrice,
     },
     {
-        name: "Instagram Followers | 2500+ [REFILLS]",
+        name: "Instagram Followers | 2500+ [REAL QUALITY]",
         price: 8.8 * ppPrice,
     },
     {
-        name: "Instagram Followers | 5000+ [REFILLS]",
+        name: "Instagram Followers | 5000+ [REAL QUALITY]",
         price: 17.6 * ppPrice,
     },
     {
-        name: "Instagram Followers | 10000+ [REFILLS]",
+        name: "Instagram Followers | 10000+ [REAL QUALITY]",
         price: 35.2 * ppPrice,
     },
     {
-        name: "Instagram Followers | 25000+ [REFILLS]",
+        name: "Instagram Followers | 25000+ [REAL QUALITY]",
         price: 87.99 * ppPrice,
     },
     {
-        name: "Instagram Followers | 50000+ [REFILLS]",
+        name: "Instagram Followers | 50000+ [REAL QUALITY]",
         price: 175.99 * ppPrice,
     },
     {
@@ -390,7 +435,7 @@ const productCallOfDutyServices = [
 ];
 
 const activeServicesList = [
-    // { list: productSpotifyServices, name: "Spotify Services" },
+    { list: productSpotifyServices, name: "Spotify Services" },
     { list: productInstagramServices, name: "Instagram Services" },
     { list: productYouTubeServices, name: "Youtube Services" },
     { list: productOnlyFansService, name: "OnlyFans Services" },
@@ -564,7 +609,7 @@ module.exports = {
                                 )}`;
                                 message.channel.send(
                                     new discord.MessageEmbed()
-                                        .setTitle("Which Account ?")
+                                        .setTitle("Which Service ?")
                                         .setDescription(
                                             description +
                                                 "\n\n**NOTE:** Type `-close` to close the ticket at any time."
@@ -695,7 +740,7 @@ module.exports = {
                                 )}`;
                                 message.channel.send(
                                     new discord.MessageEmbed()
-                                        .setTitle("Which Service ?")
+                                        .setTitle("Which Account ?")
                                         .setDescription(
                                             description +
                                                 "\n\n**NOTE:** Type `-close` to close the ticket at any time."
