@@ -478,7 +478,7 @@ const productTikTokServices = [
 const productCallOfDutyServices = [
   {
     name: 'Modern Warfare Unlock All | RUT LIFETIME ULTIMATE Key | PC ',
-    price: 39.99,
+    price: 41.99,
   },
   {
     name: 'Modern Warfare Unlock All | Service | Xbox/PS4 ',
