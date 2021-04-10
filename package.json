@@ -9,6 +9,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
+    "ddp": "^0.12.1",
     "discord.js": "^12.4.1",
     "express": "^4.17.1",
     "moment": "^2.29.1",
