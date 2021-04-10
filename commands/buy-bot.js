@@ -10,47 +10,67 @@ const ppPrice = 1.2;
 
 const productLimitedItemsAccounts = [
   {
+    name: 'CALL OF DUTY®: MW | Damascus Camo w/ 410+ Warzone Wins',
+    price: 38.99 * ppPrice,
+  },
+  {
     name: 'CALL OF DUTY®: MW | Damascus Camo w/ 100+ Warzone Wins',
     price: 25.99 * ppPrice,
   },
   {
-    name: 'CALL OF DUTY®: MW | Damascus Camo w/ 5+ Obsidian Weapons',
-    price: 29.99 * ppPrice,
+    name:
+      'CALL OF DUTY®: MW | Damascus Camo + Obsidian Camo w/ 100+ Warzone Wins',
+    price: 27.99 * ppPrice,
   },
   {
-    name: 'CALL OF DUTY®: MW | Damascus Camo w/ 1+ Obsidian Camo + Level: 1000',
-    price: 31.99 * ppPrice,
+    name: 'CALL OF DUTY®: MW | 15+ Platinum Weapons w/ 5+ Obsidian Weapons',
+    price: 7.99 * ppPrice,
   },
-  // {
-  //     name:
-  //         "CALL OF DUTY®: MW | Damascus Camo w/ 1+ Obsidian Weapon + 374 WarZone Wins + 2,92KD ",
-  //     price: 79.99 * ppPrice,
-  // },
-  // {
-  //     name:
-  //         "CALL OF DUTY®: MW | Damascus Camo w/ 10+ Obsidian Weapons + 167 WarZone Wins + 44K CW Kills ",
-  //     price: 69.99 * ppPrice,
-  // },
-  // {
-  //     name: "CALL OF DUTY®: MW | Damascus Camo w/ 10+ Obsidian Weapons ",
-  //     price: 63.99 * ppPrice,
-  // },
-  // {
-  //     name:
-  //         "CALL OF DUTY®: MW | Damascus Camo w/ 1+ Obsidian Weapon + 184 WarZone Wins ",
-  //     price: 27.99 * ppPrice,
-  // },
-  // {
-  //     name: "CALL OF DUTY®: MW | 3x Obsidian Snipers ",
-  //     price: 2.99 * ppPrice,
-  // },
-  // {
-  //     name: "CALL OF DUTY®: MW  Accounts | 480+ WarZone Wins",
-  //     price: 34.99 * ppPrice,
-  // },
+  {
+    name:
+      'CALL OF DUTY®: MW | 30+ Platinum Weapons w/ 5+ Obsidian Weapons + 5+ Store Bought Items',
+    price: 11.49 * ppPrice,
+  },
+  {
+    name:
+      'CALL OF DUTY®: MW  | 5+ Obsidian Weapons w/ 6+ Platinum Weapons + 25+ Store Bought Items',
+    price: 15.29 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: CW  | 50000+ Kills w/ 100+ WarZone Wins',
+    price: 13.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: CW  | 60000+ Kills',
+    price: 11.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 60+ Store Bought Items',
+    price: 12.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 70+ Store Bought Items',
+    price: 14.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 75+ Store Bought Items',
+    price: 15.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 85+ Store Bought Items',
+    price: 17.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 185+ Store Bought Items',
+    price: 38.99 * ppPrice,
+  },
 ];
 
 const productCallOfDutyAccounts = [
+  {
+    name: '[BULK] 150x CALL OF DUTY®: MW  | Random Stats',
+    price: 1.5 * ppPrice,
+  },
   {
     name: 'CALL OF DUTY®: MW  | Damascus Camo',
     price: 22.99 * ppPrice,
@@ -123,30 +143,30 @@ const productCallOfDutyAccounts = [
 ];
 
 const productCallOfDutyStoreBoughtItemsAccounts = [
-  //   {
-  //     name: '[BULK] 3x CALL OF DUTY®: MW  | 5+ Store Bought Items',
-  //     price: 2.25 * ppPrice,
-  //   },
-  //   {
-  //     name: 'CALL OF DUTY®: MW  | 10+ Store Bought Items',
-  //     price: 2.49 * ppPrice,
-  //   },
-  //   {
-  //     name: 'CALL OF DUTY®: MW  | 15+ Store Bought Items',
-  //     price: 3.49 * ppPrice,
-  //   },
-  //   {
-  //     name: 'CALL OF DUTY®: MW  | 20+ Store Bought Items',
-  //     price: 4.49 * ppPrice,
-  //   },
-  //   {
-  //     name: 'CALL OF DUTY®: MW  | 25+ Store Bought Items',
-  //     price: 5.49 * ppPrice,
-  //   },
-  //   {
-  //     name: 'CALL OF DUTY®: MW  | 30+ Store Bought Items',
-  //     price: 6.49 * ppPrice,
-  //   },
+  {
+    name: '[BULK] 3x CALL OF DUTY®: MW  | 5+ Store Bought Items',
+    price: 2.25 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 10+ Store Bought Items',
+    price: 2.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 15+ Store Bought Items',
+    price: 3.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 20+ Store Bought Items',
+    price: 4.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 25+ Store Bought Items',
+    price: 5.49 * ppPrice,
+  },
+  {
+    name: 'CALL OF DUTY®: MW  | 30+ Store Bought Items',
+    price: 6.49 * ppPrice,
+  },
   {
     name: 'CALL OF DUTY®: MW  | 35+ Store Bought Items',
     price: 7.49 * ppPrice,
@@ -154,22 +174,6 @@ const productCallOfDutyStoreBoughtItemsAccounts = [
   {
     name: 'CALL OF DUTY®: MW  | 45+ Store Bought Items',
     price: 9.49 * ppPrice,
-  },
-  {
-    name: 'CALL OF DUTY®: MW  | 60+ Store Bought Items',
-    price: 12.49 * ppPrice,
-  },
-  {
-    name: 'CALL OF DUTY®: MW  | 70+ Store Bought Items',
-    price: 14.49 * ppPrice,
-  },
-  {
-    name: 'CALL OF DUTY®: MW  | 85+ Store Bought Items',
-    price: 17.49 * ppPrice,
-  },
-  {
-    name: 'CALL OF DUTY®: MW  | 124+ Store Bought Items',
-    price: 26.99 * ppPrice,
   },
 ];
 
@@ -201,10 +205,6 @@ const productCallOfDutyBlackOpsAccounts = [
 ];
 
 const productCallOfDutyWarZoneAccounts = [
-  {
-    name: '[BULK] 150x CALL OF DUTY®: MW  | Random Stats',
-    price: 1.5 * ppPrice,
-  },
   {
     name: '[BULK] 2x CALL OF DUTY®: MW  | 50+ WarZone Wins',
     price: 1.0 * ppPrice,
@@ -554,7 +554,7 @@ module.exports = {
         paymentMethodCollector.stop();
 
         message.channel.send(
-          `*You have selected **PayPal** as your payment method. <:paypal:761297958272237629>\n\nPlease **note** that **PayPal** prices are* **15%** higher than **Bitcoin** prices on our shop.\n\nAlso please **note** that **Zestras only** accepts **PayPal** if you have a *Friends & Family* payment option. Some countries that **DOESN'T** have a *Friends & Family* payment option are: *Brazil, China, India, Japan, Jamaica, Aruba*. If your country is in this list, then you **cannot** buy! **(please double check if you're able to send payments as Friends & Family before continuing)**\n\nLastly, **please** make sure that you **accept** these **Terms of service** before you send any money: **https://zestras.net/terms**\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+          `*You have selected **PayPal** as your payment method. <:paypal:761297958272237629>\n\nPlease **note** that **PayPal** prices are* **20%** higher than **Bitcoin** prices on our shop.\n\nAlso please **note** that **Zestras only** accepts **PayPal** if you have a *Friends & Family* payment option. Some countries that **DOESN'T** have a *Friends & Family* payment option are: *Brazil, China, India, Japan, Jamaica, Aruba*. If your country is in this list, then you **cannot** buy! **(please double check if you're able to send payments as Friends & Family before continuing)**\n\nLastly, **please** make sure that you **accept** these **Terms of service** before you send any money: **https://zestras.net/terms**\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
         );
 
         message.channel.send(
