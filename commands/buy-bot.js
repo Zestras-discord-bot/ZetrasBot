@@ -319,14 +319,17 @@ const productOtherAccounts = [
 
 const activeAccountsList = [
   { list: productLimitedItemsAccounts, name: 'Limited Items' },
-  { list: productCallOfDutyAccounts, name: 'Call of Duty Accounts' },
+  {
+    list: productCallOfDutyAccounts,
+    name: 'Modern Warfare / Warzone Accounts',
+  },
   {
     list: productCallOfDutyStoreBoughtItemsAccounts,
     name: 'Call of Duty Store Bought Accounts',
   },
   {
     list: productCallOfDutyBlackOpsAccounts,
-    name: 'Call of Duty Black Ops Accounts',
+    name: 'Call of Duty Cold War Accounts',
   },
   {
     list: productCallOfDutyWarZoneAccounts,
