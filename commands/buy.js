@@ -1,22 +1,20 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 // const ms = require("ms");
-const fs = require('fs');
-
-let numTicket;
+const fs = require("fs");
 
 module.exports = {
   run: async (discord, bot, msg) => {
     let supportRole = msg.guild.roles.cache.find(
-      (r) => r.name == 'Support Team'
+      (r) => r.name == "Support Team"
     );
     if (!supportRole)
       return msg.channel.send(
-        'There is no `Support Team` role! Please tell an admin to create this role!'
+        "There is no `Support Team` role! Please tell an admin to create this role!"
       );
-    if (msg.channel.id != '776817366574432276')
+    if (msg.channel.id != "789633450126606394")
       return msg.channel.send(
         `Please use the ${msg.guild.channels.cache.find(
-          (c) => c.id == '776817366574432276'
+          (c) => c.id == "789633450126606394"
         )} channel.`
       );
     let user = msg.author;
@@ -24,8 +22,8 @@ module.exports = {
     if (msg.guild.channels.cache.find((c) => c.topic == user.id))
       return msg.channel.send(
         new discord.MessageEmbed()
-          .setTitle('Error')
-          .setDescription('You already have an opened ticket!')
+          .setTitle("Error")
+          .setDescription("You already have an opened ticket!")
           .setTimestamp()
           .setFooter(`© 2020 ${bot.user.username}`, bot.user.displayAvatarURL)
           .setColor(0xff0000)
@@ -34,45 +32,48 @@ module.exports = {
       .create(`ticket-${user.username}`, {
         permissionOverwrites: [
           {
-            id: msg.guild.roles.cache.find((r) => r.name == '@everyone').id,
-            deny: ['VIEW_CHANNEL'],
+            id: msg.guild.roles.cache.find((r) => r.name == "@everyone").id,
+            deny: ["VIEW_CHANNEL"],
           },
           {
             id: msg.author.id,
-            allow: ['VIEW_CHANNEL'],
+            allow: ["VIEW_CHANNEL"],
           },
           {
             id: supportRole.id,
-            allow: ['VIEW_CHANNEL'],
+            allow: ["VIEW_CHANNEL"],
           },
         ],
       })
       .then((c) => {
-        msg.delete();
+        setTimeout(() => {
+          msg.delete();
+        }, 5000);
         return c;
       })
       .then(
-        (c) =>
-          c.setParent(
+        (c) => {
+          return c.setParent(
             msg.guild.channels.cache.find(
-              (channel) => channel.id == 776818807192682527
+              (channel) => channel.id == 789633450746445841
             ).id
-          ),
+          );
+        },
         (e) => console.log(e)
       ) //channel.type == "category" &&
       .then((c) => {
         c.overwritePermissions([
           {
-            id: msg.guild.roles.cache.find((r) => r.name == '@everyone').id,
-            deny: ['VIEW_CHANNEL'],
+            id: msg.guild.roles.cache.find((r) => r.name == "@everyone").id,
+            deny: ["VIEW_CHANNEL"],
           },
           {
             id: msg.author.id,
-            allow: ['VIEW_CHANNEL'],
+            allow: ["VIEW_CHANNEL"],
           },
           {
             id: supportRole.id,
-            allow: ['VIEW_CHANNEL'],
+            allow: ["VIEW_CHANNEL"],
           },
         ]);
         return c;
@@ -82,7 +83,7 @@ module.exports = {
           msg.channel
             .send(
               new discord.MessageEmbed()
-                .setTitle('Ticket created!')
+                .setTitle("Ticket created!")
                 .setDescription(`You can find it here: ${c}.`)
                 .setTimestamp()
                 .setFooter(
@@ -93,7 +94,7 @@ module.exports = {
             )
             .then((message) => setTimeout(() => message.delete(), 20000));
 
-          c.send('-buy-bot');
+          c.send("-buy-bot");
           c.send(`${msg.author} ${supportRole}`)
             .then((m) => m.delete())
             .catch((err) => console.log(err));
@@ -103,6 +104,6 @@ module.exports = {
     // })},
     (e) => console.log(e);
   },
-  name: 'buy',
-  description: 'Open new ticket in the server.',
+  name: "buy",
+  description: "Open new ticket in the server.",
 };
