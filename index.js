@@ -65,51 +65,71 @@ const DDPClient = new DDP({
 });
 
 let accounts = [
-  { name: "Limited Items" },
-  { name: "Modern Warfare / Warzone Accounts" },
-  { name: "WarZone Accounts" },
-  { name: "Cold War Accounts" },
-  { name: "Blizzard" },
-  { name: "VPN" },
-  { name: "Porn" },
+  { name: "Limited Items", list: [], fileName: "LimitedItems" },
+  {
+    name: "Modern Warfare / Warzone Accounts",
+    list: [],
+    fileName: "ModernWarfare",
+  },
+  { name: "WarZone Accounts", list: [], fileName: "WarZoneAccounts" },
+  { name: "Cold War Accounts", list: [], fileName: "ColdWarAccounts" },
+  { name: "Blizzard", list: [], fileName: "Blizzard" },
+  { name: "VPN", list: [], fileName: "VPN" },
+  { name: "Porn", list: [], fileName: "Porn" },
 ];
 
 let services = [
-  { name: "Instagram Services" },
-  { name: "TikTok" },
-  { name: "Twitch" },
-  { name: "YouTube Services" },
-  { name: "Call of Duty Services" },
-  { name: "Spotify" },
+  { name: "Instagram Services", list: [], fileName: "Instagram" },
+  { name: "TikTok", list: [], fileName: "TikTok" },
+  { name: "Twitch", list: [], fileName: "Twitch" },
+  { name: "YouTube Services", list: [], fileName: "YouTube" },
+  { name: "Call of Duty Services", list: [], fileName: "CallofDutyServices" },
+  { name: "Spotify", list: [], fileName: "Spotify" },
 ];
 
-const { addingIdtoObj } = require("./helper/fixingLists");
-const { getCategoriesId } = require("./helper/controller");
+const {
+  addingIdtoObj,
+  erasingHiddenProducts,
+} = require("./helper/fixingLists");
+const { getCategoriesId, getProducts } = require("./helper/controller");
+const { writeJsonFile } = require("./helper/createJsonFile");
 
-// product()
-//   .then((products) => cleanedListOfproducts(products))
-//   .then((list) => console.log(list.length))
-//   .catch((e) => console.log(e));
-getCategoriesId(DDPClient).then((categoriesId) => {
-  accounts = addingIdtoObj(categoriesId, accounts);
-  console.log(accounts);
+getCategoriesId(DDPClient) // Gets The categories from API
+  .then((categoriesId) => {
+    accounts = addingIdtoObj(categoriesId, accounts); //It matched the ID of each category with the ones we hardcoded
+    services = addingIdtoObj(categoriesId, services); //It matched the ID of each category with the ones we hardcoded
 
-  services = addingIdtoObj(categoriesId, services);
-  console.log(services);
-});
+    getProducts(DDPClient, Login, loginToken) // Gets The Products from API
+      .then((products) => erasingHiddenProducts(products)) // Filters the products to erase the hidden one
+
+      .then((list) => {
+        console.log(list.length + " Products After Cleaning");
+        list.map((eachProduct) => {
+          accounts.forEach((eachCategory) => {
+            if (eachProduct.category === eachCategory.id) {
+              eachCategory.list.push(eachProduct);
+            }
+          });
+          services.forEach((eachCategory) => {
+            if (eachProduct.category === eachCategory.id) {
+              eachCategory.list.push(eachProduct);
+            }
+          });
+        });
+      })
+
+      .then(() => {
+        accounts.forEach((each) => {
+          each.updateDate = new Date();
+          writeJsonFile(each.fileName, each);
+        });
+        services.forEach((each) => {
+          each.updateDate = new Date();
+          writeJsonFile(each.fileName, each);
+        });
+      })
+
+      .catch((e) => console.log(e));
+  })
+  .catch((e) => console.log(e));
 // .then(console.log);
-
-const productLimitedItemsAccounts = [
-  {
-    name: "CALL OF DUTY®: MW | Damascus Camo w/ 100+ Warzone Wins",
-    price: 25.99,
-  },
-  {
-    name: "CALL OF DUTY®: MW | Damascus Camo w/ 5+ Obsidian Weapons",
-    price: 29.99,
-  },
-];
-
-const activeAccountsList = [
-  { list: productLimitedItemsAccounts, name: "Limited Items" },
-];
