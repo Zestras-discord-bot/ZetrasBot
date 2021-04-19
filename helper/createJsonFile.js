@@ -1,8 +1,11 @@
 const writeJsonFile = (name, data) => {
   const fs = require("fs");
   const path = require("path");
+
+  // path.join(__dirname, "helper", "jsonData", `${name}.json`)
+
   fs.writeFile(
-    path.join(__dirname, "helper", "jsonData", `${name}.json`),
+    `./helper/jsonData/${name}.json`,
     JSON.stringify(data),
     "utf8",
     (err) => {
