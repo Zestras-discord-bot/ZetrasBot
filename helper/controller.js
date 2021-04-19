@@ -13,7 +13,6 @@ const getCategoriesId = (DDPClient) => {
 
       DDPClient.subscribe("shop.categories", [shopId], () => {
         const categories = DDPClient.collections["shop.categories"];
-        console.log(categories);
         return resolve(categories);
       });
     })
@@ -21,14 +20,14 @@ const getCategoriesId = (DDPClient) => {
 };
 
 // Get ALL Products  PROMISE
-const getProducts = (DDPClient) => {
+const getProducts = (DDPClient, Login, token) => {
   return new Promise((resolve, reject) => {
     DDPClient.connect((err, reconnected) => {
       if (err) {
         throw err;
       }
 
-      Login.loginWithToken(DDPClient, loginToken, (err, user) => {
+      Login.loginWithToken(DDPClient, token, (err, user) => {
         const query = {
           search: "z755JjyysMSeX3zoA",
         };
