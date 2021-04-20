@@ -2,37 +2,6 @@
 
 const ppEmail = "sohaibmezlay@gmail.com";
 
-//LIST OF ACCOUNTS
-
-// const activeAccountsList = [
-//   { list: productLimitedItemsAccounts, name: "Limited Items" },
-//   { list: productCallOfDutyAccounts, name: "Call of Duty Accounts" },
-//   {
-//     list: productCallOfDutyStoreBoughtItemsAccounts,
-//     name: "Call of Duty Store Bought Accounts",
-//   },
-//   {
-//     list: productCallOfDutyBlackOpsAccounts,
-//     name: "Call of Duty Black Ops Accounts",
-//   },
-//   {
-//     list: productCallOfDutyWarZoneAccounts,
-//     name: "Call of Duty War Zone Accounts",
-//   },
-//   { list: productVpnAccounts, name: "VPN Accounts" },
-//   { list: productOtherAccounts, name: "Other Accounts" },
-// ];
-
-// const activeServicesList = [
-//   { list: productSpotifyServices, name: "Spotify Services" },
-//   { list: productInstagramServices, name: "Instagram Services" },
-//   { list: productYouTubeServices, name: "Youtube Services" },
-//   { list: productOnlyFansService, name: "OnlyFans Services" },
-//   { list: productTwitchServices, name: "Twitch Services" },
-//   { list: productTikTokServices, name: "TikTok  Services" },
-//   { list: productCallOfDutyServices, name: "Call of Duty Services" },
-// ];
-
 module.exports = {
   async run(discord, bot, message, args) {
     // message.reply("Paypal is limited, please try again later");
@@ -196,7 +165,6 @@ module.exports = {
                 );
                 whichServiceCollector.on("collect", (message) => {
                   collectorContent = parseInt(message.content.toLowerCase());
-                  console.log(collectorContent);
 
                   if (collectorContent.toString() === "NaN") return;
 
@@ -324,7 +292,6 @@ module.exports = {
                   collectorContent = message.content.toLowerCase();
 
                   collectorContent = parseInt(message.content.toLowerCase());
-                  console.log(collectorContent);
 
                   if (collectorContent.toString() === "NaN") return;
 
