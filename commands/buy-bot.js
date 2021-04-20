@@ -229,14 +229,10 @@ module.exports = {
                         )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                       );
                     } else if (productsItems.length > 7) {
-                      function sliceIntoChunks(arr, chunkSize) {
-                        const res = [];
-                        for (let i = 0; i < arr.length; i += chunkSize) {
-                          const chunk = arr.slice(i, i + chunkSize);
-                          res.push(chunk);
-                        }
-                        return res;
-                      }
+                      const {
+                        sliceIntoChunks,
+                      } = require("../helper/fixingLists");
+
                       productsItems = sliceIntoChunks(productsItems, 8);
 
                       message.channel.send(
@@ -360,14 +356,10 @@ module.exports = {
                         )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                       );
                     } else if (productsItems.length > 7) {
-                      function sliceIntoChunks(arr, chunkSize) {
-                        const res = [];
-                        for (let i = 0; i < arr.length; i += chunkSize) {
-                          const chunk = arr.slice(i, i + chunkSize);
-                          res.push(chunk);
-                        }
-                        return res;
-                      }
+                      const {
+                        sliceIntoChunks,
+                      } = require("../helper/fixingLists");
+
                       productsItems = sliceIntoChunks(productsItems, 8);
 
                       message.channel.send(

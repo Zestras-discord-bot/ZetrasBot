@@ -39,5 +39,15 @@ const ordenedListOfproducts = (product, noHiddenId) => {
   });
 };
 
+const sliceIntoChunks = (arr, chunkSize) => {
+  const res = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+};
+
 module.exports.addingIdtoObj = addingIdtoObj;
 module.exports.erasingHiddenProducts = erasingHiddenProducts;
+module.exports.sliceIntoChunks = sliceIntoChunks;
