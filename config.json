@@ -8,5 +8,31 @@
     "491807288303026206"
   ],
   "shopId": "CYTs2NH5CyGseHqsJ",
-  "ppPrice": 1.2
+  "ppPrice": 1.2,
+  "loginToken": "ODKkYLF7oducs5INMuCzEBw085sKT1t20Jvb_oyAy2t",
+  "freshAccounts": [
+    { "name": "Limited Items", "list": [], "fileName": "LimitedItems" },
+    {
+      "name": "Modern Warfare / Warzone Accounts",
+      "list": [],
+      "fileName": "ModernWarfare"
+    },
+    { "name": "WarZone Accounts", "list": [], "fileName": "WarZoneAccounts" },
+    { "name": "Cold War Accounts", "list": [], "fileName": "ColdWarAccounts" },
+    { "name": "Blizzard", "list": [], "fileName": "Blizzard" },
+    { "name": "VPN", "list": [], "fileName": "VPN" },
+    { "name": "Porn", "list": [], "fileName": "Porn" }
+  ],
+  "freshServices": [
+    { "name": "Instagram Services", "list": [], "fileName": "Instagram" },
+    { "name": "TikTok", "list": [], "fileName": "TikTok" },
+    { "name": "Twitch", "list": [], "fileName": "Twitch" },
+    { "name": "YouTube Services", "list": [], "fileName": "YouTube" },
+    {
+      "name": "Call of Duty Services",
+      "list": [],
+      "fileName": "CallofDutyServices"
+    },
+    { "name": "Spotify", "list": [], "fileName": "Spotify" }
+  ]
 }
