@@ -96,7 +96,7 @@ module.exports = {
         paymentMethodCollector.stop();
 
         message.channel.send(
-          `*You have selected **PayPal** as your payment method. <:paypal:761297958272237629>\n\nPlease **note** that **PayPal** prices are* **15%** higher than **Bitcoin** prices on our shop.\n\nAlso please **note** that **Zestras only** accepts **PayPal** if you have a *Friends & Family* payment option. Some countries that **DOESN'T** have a *Friends & Family* payment option are: *Brazil, China, India, Japan, Jamaica, Aruba*. If your country is in this list, then you **cannot** buy! **(please double check if you're able to send payments as Friends & Family before continuing)**\n\nLastly, **please** make sure that you **accept** these **Terms of service** before you send any money: **https://zestras.net/terms**\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+          `*You have selected **PayPal** as your payment method. <:paypal:761297958272237629>\n\nPlease **note** that **PayPal** prices are* **20%** higher than **Bitcoin** prices on our shop.\n\nAlso please **note** that **Zestras only** accepts **PayPal** if you have a *Friends & Family* payment option. Some countries that **DOESN'T** have a *Friends & Family* payment option are: *Brazil, China, India, Japan, Jamaica, Aruba*. If your country is in this list, then you **cannot** buy! **(please double check if you're able to send payments as Friends & Family before continuing)**\n\nLastly, **please** make sure that you **accept** these **Terms of service** before you send any money: **https://zestras.net/terms**\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
         );
 
         message.channel.send(
