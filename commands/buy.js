@@ -1,7 +1,3 @@
-const Discord = require("discord.js");
-// const ms = require("ms");
-const fs = require("fs");
-
 module.exports = {
   run: async (discord, bot, msg) => {
     let supportRole = msg.guild.roles.cache.find(
@@ -11,10 +7,10 @@ module.exports = {
       return msg.channel.send(
         "There is no `Support Team` role! Please tell an admin to create this role!"
       );
-    if (msg.channel.id != "789633450126606394")
+    if (msg.channel.id != "776817366574432276")
       return msg.channel.send(
         `Please use the ${msg.guild.channels.cache.find(
-          (c) => c.id == "789633450126606394"
+          (c) => c.id == "776817366574432276"
         )} channel.`
       );
     let user = msg.author;
@@ -55,7 +51,7 @@ module.exports = {
         (c) => {
           return c.setParent(
             msg.guild.channels.cache.find(
-              (channel) => channel.id == 789633450746445841
+              (channel) => channel.id == 776818807192682527
             ).id
           );
         },
