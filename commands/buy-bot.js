@@ -313,14 +313,14 @@ module.exports = {
                           index + 1
                         }]** *${product.name.trim()}* [**$${product.price.toFixed(
                           2
-                        )}**]`;
+                        )}**] | [STOCK: **${product.stock}**]`;
                       }
                     );
                     if (productsItems.length < 8) {
                       message.channel.send(
                         `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
                           "\n"
-                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                        )}\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                       );
                     } else if (productsItems.length > 7) {
                       const {
@@ -331,9 +331,6 @@ module.exports = {
 
                       message.channel.send(
                         "*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**"
-                      );
-                      message.channel.send(
-                        "*Please check what stock is available on the shop before picking a product.*"
                       );
 
                       productsItems.forEach((productsItems) => {
@@ -361,7 +358,15 @@ module.exports = {
                         return message.channel.send(
                           `*Please send a valid number.* **${number}** *is not a valid number.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
                         );
-                      else {
+                      else if (selectedAccount.list[number - 1].stock < 1) {
+                        return message.channel
+                          .send(
+                            `Sorry but *${selectedAccount.list[
+                              number - 1
+                            ].name.trim()}* are **out of stock**, choose another one.`
+                          )
+                          .then((m) => setTimeout(() => m.delete(), 5000));
+                      } else {
                         productCollector.stop();
                         const product = selectedAccount.list[number - 1];
 
