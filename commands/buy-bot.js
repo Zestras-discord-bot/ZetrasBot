@@ -462,5 +462,5 @@ module.exports = {
   },
   name: "buy-bot",
   aliases: ["purchase"],
-  description: "Handling the bot for buying items ",
+  description: "Handling the bot for buying items",
 };
