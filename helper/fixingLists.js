@@ -1,19 +1,26 @@
+const { ppPrice } = require("../config.json");
+
 const addingIdtoObj = (categoriesId, objToModify) => {
-  return Object.keys(categoriesId)
-    .map((eachKey) => {
-      let newObj;
-      objToModify.map((eachAccountType) => {
-        if (
-          eachAccountType.name.trim() === categoriesId[eachKey].title.trim()
-        ) {
-          newObj = { ...eachAccountType, id: eachKey };
-        }
-      });
-      return newObj;
-    })
-    .filter((each) => {
-      if (each !== undefined) return each;
-    });
+  let newobjet = [...objToModify];
+  newobjet.forEach((each) => (each.list = []));
+
+  return [
+    ...Object.keys(categoriesId)
+      .map((eachKey) => {
+        let newObj;
+        objToModify.map((eachAccountType) => {
+          if (
+            eachAccountType.name.trim() === categoriesId[eachKey].title.trim()
+          ) {
+            newObj = { ...eachAccountType, id: eachKey };
+          }
+        });
+        return newObj;
+      })
+      .filter((each) => {
+        if (each !== undefined) return each;
+      }),
+  ];
 };
 
 const erasingHiddenProducts = (products) => {
@@ -32,7 +39,8 @@ const ordenedListOfproducts = (product, noHiddenId) => {
       id: product[eachId]._id,
       name: product[eachId].name,
       minQuantity: product[eachId].minQuantity,
-      price: (product[eachId].value / 100) * product[eachId].minQuantity,
+      price:
+        (product[eachId].value / 100) * product[eachId].minQuantity * ppPrice,
       category: product[eachId].category,
     };
     return newStructure;
