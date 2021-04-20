@@ -59,8 +59,8 @@ module.exports = {
 
     const activeAccountsList = require("../helper/jsonData/accountsData.json")
       .data;
-
-    console.log(activeAccountsList);
+    const activeServicesList = require("../helper/jsonData/servicesData.json")
+      .data;
 
     message
       .reply(
@@ -195,7 +195,11 @@ module.exports = {
                   (x) => true
                 );
                 whichServiceCollector.on("collect", (message) => {
-                  collectorContent = message.content.toLowerCase();
+                  collectorContent = parseInt(message.content.toLowerCase());
+                  console.log(collectorContent);
+
+                  if (collectorContent.toString() === "NaN") return;
+
                   let selectedService =
                     activeServicesList[parseInt(collectorContent) - 1];
 
@@ -218,11 +222,39 @@ module.exports = {
                       }
                     );
 
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
-                        "\n"
-                      )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
+                    if (productsItems.length < 8) {
+                      message.channel.send(
+                        `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                          "\n"
+                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                      );
+                    } else if (productsItems.length > 7) {
+                      function sliceIntoChunks(arr, chunkSize) {
+                        const res = [];
+                        for (let i = 0; i < arr.length; i += chunkSize) {
+                          const chunk = arr.slice(i, i + chunkSize);
+                          res.push(chunk);
+                        }
+                        return res;
+                      }
+                      productsItems = sliceIntoChunks(productsItems, 8);
+
+                      message.channel.send(
+                        "*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**"
+                      );
+                      message.channel.send(
+                        "*Please check what stock is available on the shop before picking a product.*"
+                      );
+
+                      productsItems.forEach((productsItems) => {
+                        message.channel.send(
+                          `\n\n${productsItems.join("\n")}\n\n`
+                        );
+                      });
+                      message.channel.send(
+                        "**NOTE:** Type `-close` to close the ticket at any time."
+                      );
+                    }
 
                     const productCollector = ticket.createMessageCollector(
                       (x) => true
@@ -294,6 +326,12 @@ module.exports = {
                 );
                 whichAccountCollector.on("collect", (message) => {
                   collectorContent = message.content.toLowerCase();
+
+                  collectorContent = parseInt(message.content.toLowerCase());
+                  console.log(collectorContent);
+
+                  if (collectorContent.toString() === "NaN") return;
+
                   let selectedAccount =
                     activeAccountsList[parseInt(collectorContent) - 1];
 
@@ -315,12 +353,39 @@ module.exports = {
                         )}**]`;
                       }
                     );
+                    if (productsItems.length < 8) {
+                      message.channel.send(
+                        `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
+                          "\n"
+                        )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
+                      );
+                    } else if (productsItems.length > 7) {
+                      function sliceIntoChunks(arr, chunkSize) {
+                        const res = [];
+                        for (let i = 0; i < arr.length; i += chunkSize) {
+                          const chunk = arr.slice(i, i + chunkSize);
+                          res.push(chunk);
+                        }
+                        return res;
+                      }
+                      productsItems = sliceIntoChunks(productsItems, 8);
 
-                    message.channel.send(
-                      `*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**\n\n*Select the product that you would like to buy:*\n\n${productsItems.join(
-                        "\n"
-                      )}\n\n*Please check what stock is available on the shop before picking a product.*\n\n**NOTE:** Type \`-close\` to close the ticket at any time.`
-                    );
+                      message.channel.send(
+                        "*Please make sure to check the store to get a full list of all our products here:* **https://zestras.net/**"
+                      );
+                      message.channel.send(
+                        "*Please check what stock is available on the shop before picking a product.*"
+                      );
+
+                      productsItems.forEach((productsItems) => {
+                        message.channel.send(
+                          `\n\n${productsItems.join("\n")}\n\n`
+                        );
+                      });
+                      message.channel.send(
+                        "**NOTE:** Type `-close` to close the ticket at any time."
+                      );
+                    }
 
                     const productCollector = ticket.createMessageCollector(
                       (x) => true
