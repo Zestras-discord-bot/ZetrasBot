@@ -19,6 +19,10 @@ module.exports = {
       );
     let user = msg.author;
     // if (!user.bot) return msg.channel.send("Incorrect method , you will need to react to the above embed message to create a ticket");;
+    const { fetchProcess } = require("../helper/connectionWithDDP");
+
+    fetchProcess();
+
     if (msg.guild.channels.cache.find((c) => c.topic == user.id))
       return msg.channel.send(
         new discord.MessageEmbed()
@@ -94,7 +98,8 @@ module.exports = {
             )
             .then((message) => setTimeout(() => message.delete(), 20000));
 
-          c.send("-buy-bot");
+          setTimeout(() => c.send("-buy-bot"), 5000);
+
           c.send(`${msg.author} ${supportRole}`)
             .then((m) => m.delete())
             .catch((err) => console.log(err));
