@@ -13,6 +13,8 @@ const getCategoriesId = (DDPClient) => {
 
       DDPClient.subscribe("shop.categories", [shopId], () => {
         const categories = DDPClient.collections["shop.categories"];
+        DDPClient.close();
+
         return resolve(categories);
       });
     })
@@ -39,6 +41,7 @@ const getProducts = (DDPClient, Login, token) => {
           [shopId, null, options],
           () => {
             const products = DDPClient.collections["shop.products"];
+            DDPClient.close();
             console.log(
               Object.keys(products).length + " Products Fecth from API"
             );
