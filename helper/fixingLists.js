@@ -32,7 +32,7 @@ const ordenedListOfproducts = (product, noHiddenId) => {
       id: product[eachId]._id,
       name: product[eachId].name,
       minQuantity: product[eachId].minQuantity,
-      value: (product[eachId].value / 100) * product[eachId].minQuantity,
+      price: (product[eachId].value / 100) * product[eachId].minQuantity,
       category: product[eachId].category,
     };
     return newStructure;
