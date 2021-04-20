@@ -65,14 +65,6 @@ const fetchProcess = () => {
 
           writeJsonFile("accountsData", { data: accounts });
           writeJsonFile("servicesData", { data: services });
-          // accounts.forEach((each) => {
-          //   each.updateDate = new Date();
-          //   writeJsonFile(each.fileName, each);
-          // });
-          // services.forEach((each) => {
-          //   each.updateDate = new Date();
-          //   writeJsonFile(each.fileName, each);
-          // });
         })
 
         .catch((e) => console.log(e));
