@@ -257,6 +257,11 @@ module.exports = {
                             message.channel.send(
                               "*Thank you for your order!*\n**Zestras** will review this ticket soon and fulfill your order. This can take up to **24 hours** if he is offline. If you haven't received your order within 24 hours, then you'll be automatically refunded.\n\n***NOTE**: Do **NOT** delete this ticket."
                             );
+                            if (selectedService.linkMessage) {
+                              message.channel.send(
+                                `*Please remember to **paste the link** to your ${selectedService.fileName} ${selectedService.linkMessage}*`
+                              );
+                            }
                           }
                         });
                       }
