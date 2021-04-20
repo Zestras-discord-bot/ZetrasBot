@@ -42,6 +42,7 @@ const ordenedListOfproducts = (product, noHiddenId) => {
       price:
         (product[eachId].value / 100) * product[eachId].minQuantity * ppPrice,
       category: product[eachId].category,
+      stock: product[eachId].stockCount,
     };
     return newStructure;
   });
