@@ -4,8 +4,6 @@ const bot = new discord.Client({ partials: ["MESSAGE", "USER", "REACTION"] });
 const fs = require("fs");
 const config = require("./config.json");
 
-const { fetchProcess } = require("./helper/connectionWithDDP");
-
 bot.baseCommands = new discord.Collection();
 bot.commands = new discord.Collection();
 
@@ -28,8 +26,6 @@ fs.readdirSync("./commands").forEach((file) => {
 bot.login(config.token);
 
 bot.on("ready", async () => {
-  fetchProcess();
-
   return console.log(
     `Logged in as ${bot.user.username}. ${
       bot.users.size
@@ -38,8 +34,6 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", (message) => {
-  fetchProcess();
-
   if (!message.content.startsWith(config.prefix)) return;
 
   if (message.content == "-done") return;
@@ -60,7 +54,3 @@ app.get("/", (request, response) => {
 });
 
 app.listen(3000);
-
-// while (true) {
-//   setTimeout(() => console.log("simulating"), 50000);
-// }
