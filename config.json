@@ -51,7 +51,17 @@
     {
       "name": "Call of Duty Services",
       "list": [],
-      "fileName": "CallofDutyServices"
+      "fileName": "CallofDutyServices",
+      "exceptions": [
+        {
+          "name": "Modern Warfare Unlock All | RUT LIFETIME ULTIMATE Key | PC",
+          "price": 39.99
+        },
+        {
+          "name": "Modern Warfare Unlock All | LIFETIME Service | Xbox/PS4",
+          "price": 49.99
+        }
+      ]
     },
     { "name": "Spotify", "list": [], "fileName": "Spotify" }
   ]

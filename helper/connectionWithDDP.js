@@ -2,7 +2,11 @@ const DDP = require("ddp");
 const Login = require("ddp-login");
 const { loginToken } = require("../config.json");
 
-const { addingIdtoObj, erasingHiddenProducts } = require("./fixingLists");
+const {
+  addingIdtoObj,
+  erasingHiddenProducts,
+  checkForExceptions,
+} = require("./fixingLists");
 const { getCategoriesId, getProducts } = require("./controller");
 const { writeJsonFile } = require("./createJsonFile");
 
@@ -35,6 +39,13 @@ const fetchProcess = () => {
             });
             services.forEach((eachCategory) => {
               if (eachProduct.category === eachCategory.id) {
+                if (eachCategory.exceptions) {
+                  eachProduct = checkForExceptions(
+                    eachCategory.exceptions,
+                    eachProduct
+                  );
+                }
+
                 eachCategory.list.push(eachProduct);
               }
             });
