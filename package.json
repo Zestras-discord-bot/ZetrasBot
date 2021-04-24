@@ -9,7 +9,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "node-pre-gyp": "^0.16.0"
+    "node-pre-gyp": "^0.16.0",
     "ddp": "^0.12.1",
     "ddp-login": "^1.0.10",
     "discord.js": "^12.4.1",
