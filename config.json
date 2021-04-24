@@ -1,5 +1,5 @@
 {
-  "token": "NzA2MjA5OTY0MDU3NjkwMTkz.Xq27SA.vjdvF5NSodDAnCtahHdwp0qxrYA",
+  "token": "",
   "prefix": "-",
   "owners": [
     "474884844132892683",
@@ -9,7 +9,7 @@
   ],
   "shopId": "CYTs2NH5CyGseHqsJ",
   "ppPrice": 1.2,
-  "loginToken": "ODKkYLF7oducs5INMuCzEBw085sKT1t20Jvb_oyAy2t",
+  "loginToken": "",
   "freshAccounts": [
     { "name": "Limited Items", "list": [], "fileName": "LimitedItems" },
     {
