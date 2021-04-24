@@ -44,8 +44,21 @@ const ordenedListOfproducts = (product, noHiddenId) => {
       category: product[eachId].category,
       stock: product[eachId].stockCount,
     };
+
     return newStructure;
   });
+};
+
+const checkForExceptions = (exceptions, product) => {
+  let newProduct = { ...product };
+
+  exceptions.forEach((eachExceptions) => {
+    if (eachExceptions.name === product.name) {
+      newProduct.price = eachExceptions.price;
+    }
+  });
+
+  return newProduct;
 };
 
 const sliceIntoChunks = (arr, chunkSize) => {
@@ -60,3 +73,4 @@ const sliceIntoChunks = (arr, chunkSize) => {
 module.exports.addingIdtoObj = addingIdtoObj;
 module.exports.erasingHiddenProducts = erasingHiddenProducts;
 module.exports.sliceIntoChunks = sliceIntoChunks;
+module.exports.checkForExceptions = checkForExceptions;
