@@ -53,4 +53,4 @@ app.get("/", (request, response) => {
   response.send("OK");
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 5000);
