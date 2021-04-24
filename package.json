@@ -1,12 +1,12 @@
 {
   "name": "discord-bot-zestras",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
+  "author": "NETSPRE",
   "license": "UNLICENSED",
   "dependencies": {
     "node-pre-gyp": "^0.16.0",
@@ -19,7 +19,7 @@
     "superagent": "^6.1.0"
   },
   "engines": {
-    "node": "^14.15",
+    "node": "14.15",
     "npm": "^2.1"
   }
 }
